@@ -7,7 +7,7 @@
       {% for option in question.options %}
         <p>{{ loop.index }} - {{ option }}</p>
       {% endfor %}
-      <p>Answer: {{ question.answer }}</p>
+      <p>Answer: {{ question.answer + 1 }}</p>
     {% endfor %}
   </div>
 {% endblock %}
