@@ -19,9 +19,24 @@ mongo = PyMongo(app)
 
 
 @app.route("/")
+@app.route("/home")
 def home():
     return "Downit Home route"
 
+
+@app.route("/quiz")
+def quiz():
+    return "Quiz page here"
+
+
+@app.route("/leaderboard")
+def leaderboard():
+    return "Leaderboard here"
+
+
+@app.route("/answer", methods=["POST"])
+def answer():
+    return False
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
