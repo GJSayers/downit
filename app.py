@@ -3,7 +3,6 @@ from flask import ( Flask, flash, render_template, redirect,
                     request, session, url_for, abort)
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from werkzeug.security import generate_password_hash, check_password_hash
 
 if os.path.exists("env.py"):
     import env
@@ -26,7 +25,8 @@ def home():
 
 @app.route("/quiz")
 def quiz():
-    return "Quiz page here"
+    question = mongo.db.questions.aggregate([{ "$sample" : { "size" : 1 } }])
+    return render_template("quiz.html", questions = question)
 
 
 @app.route("/leaderboard")
