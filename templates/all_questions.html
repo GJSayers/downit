@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div>
+    <p>Total questions: {{ questions.count() }}</p>
+    {% for question in questions %}
+      <br>
+      <p>{{ question.question }}</P>
+      {% for option in question.options %}
+        <p>{{ loop.index }} - {{ option }}</p>
+      {% endfor %}
+      <p>Answer: {{ question.answer + 1 }}</p>
+      <br>
+    {% endfor %}
+  </div>
+{% endblock %}

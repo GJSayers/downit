@@ -61,6 +61,11 @@ def add_question():
 
     return render_template("add_question.html")
 
+@app.route("/all_questions")
+def all_questions():
+    questions = mongo.db.questions.find()
+    return render_template("all_questions.html", questions=questions)
+
 
 @app.route("/leaderboard")
 def leaderboard():

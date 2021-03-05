@@ -1,15 +1,4 @@
 {
-	"question" : "What is the national symbol of Ireland?",
-	"options" : [
-		"The Shamrock",
-		"The Harp",
-		"The Claddagh",
-		"St. Brigid Cross"
-	],
-	"answer" : 1
-}
-
-{
 	"question" : "How many pints of Guinness are produced in Ireland every day?",
 	"options" : [
 		"Ten thousand",
