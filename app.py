@@ -29,7 +29,7 @@ def dev_only(func):
         if DEVELOPING:
             return func(*args, **kwargs)
         else:
-            raise Unreachable()
+            abort(404)
     return route
 
 
@@ -92,17 +92,35 @@ def add_question():
 
     return render_template("add_question.html")
 
-<<<<<<< Updated upstream
-=======
+
+@app.route("/upload_questions")
+@dev_only
+def upload_questions():
+    """ Bulk uploads questions in JSON format to the database. """
+    """
+    questions = [
+    {
+        "question" : "?",
+        "options" : [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "answer" :
+    }]
+    mongo.db.questions.insert(questions)
+    """
+    return "Uploaded questions"
+
 
 @app.route("/all_questions")
 @dev_only
 def all_questions():
-    """ Lists all the questions in the database """
+    """ Lists all the questions in the database. """
     questions = mongo.db.questions.find()
     return render_template("all_questions.html", questions=questions)
 
->>>>>>> Stashed changes
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
