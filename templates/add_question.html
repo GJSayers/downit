@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <form action="{{ url_for('add_question') }}" method="POST">
+    <p>
+      <label for="question">Question: </label>
+      <input type="text" name="question" value="" required>
+    </p>
+    <p>
+      <input type="radio" name="answer" value="0" checked>
+      <label for="option_one">Option One: </label>
+      <input type="text" name="option_one">
+    </p>
+    <p>
+      <input type="radio" name="answer" value="1" required>
+      <label for="option_one">Option Two: </label>
+      <input type="text" name="option_two">
+    </p>
+    <p>
+      <input type="radio" name="answer" value="2" required>
+      <label for="option_one">Option Three: </label>
+      <input type="text" name="option_three">
+    </p>
+    <p>
+      <input type="radio" name="answer" value="3" required>
+      <label for="option_one">Option Four: </label>
+      <input type="text" name="option_four">
+    </p>
+    <p><input type="submit" value="Submit"></p>
+  </form>
+{% endblock %}

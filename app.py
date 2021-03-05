@@ -4,6 +4,8 @@ from flask import ( Flask, flash, render_template, redirect,
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
+from sys import getsizeof
+
 if os.path.exists("env.py"):
     import env
 
@@ -22,11 +24,42 @@ mongo = PyMongo(app)
 def home():
     return "Downit Home route"
 
+#    id_list = []
+#    for id in session["test"]:
+#        id_list.append(ObjectId(id))
+
+#    if "test" not in session:
+#        session["test"] = []
+#    templist = session["test"]
+#    templist.append(str(question[0]["_id"]))
+#    session["test"] = templist
+
 
 @app.route("/quiz")
 def quiz():
-    question = mongo.db.questions.aggregate([{ "$sample" : { "size" : 1 } }])
+    question = list(mongo.db.questions.aggregate([
+        { "$sample" : { "size" : 1 } }
+    ]))
+
     return render_template("quiz.html", questions = question)
+
+
+@app.route("/add_question", methods=["GET", "POST"])
+def add_question():
+    if request.method == "POST":
+        new_question = {
+            "question" : request.form["question"],
+            "options" : [
+                request.form["option_one"],
+                request.form["option_two"],
+                request.form["option_three"],
+                request.form["option_four"]
+            ],
+            "answer" : int(request.form["answer"])
+        }
+        mongo.db.questions.insert_one(new_question)
+
+    return render_template("add_question.html")
 
 
 @app.route("/leaderboard")
@@ -37,6 +70,7 @@ def leaderboard():
 @app.route("/answer", methods=["POST"])
 def answer():
     return False
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
