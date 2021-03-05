@@ -36,7 +36,7 @@ def dev_only(func):
 @app.route("/")
 @app.route("/home")
 def home():
-    return "Downit Home route"
+    return render_template("home.html")
 
 #    id_list = []
 #    for id in session["test"]:
