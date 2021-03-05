@@ -1,5 +1,7 @@
 $(document).ready(function () {
-    $("#name-input").click(function() {
+    let nameInput = $("#name-input")
+    
+    nameInput.click(function() {
         $("#name-input").val('');
-    })
-  });
+    });
+});
