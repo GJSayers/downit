@@ -1,0 +1,134 @@
+{
+	"question" : "What is the national symbol of Ireland?",
+	"options" : [
+		"The Shamrock",
+		"The Harp",
+		"The Claddagh",
+		"St. Brigid Cross"
+	],
+	"answer" : 1
+}
+
+{
+	"question" : "How many pints of Guinness are produced in Ireland every day?",
+	"options" : [
+		"Ten thousand",
+		"One Hundred Thousand",
+		"Two million",
+		"Ten Million"
+	],
+	"answer" : 3
+}
+
+{
+	"question" : "How old is the Irish sport of hurling?",
+	"options" : [
+		"More than 1,000 years",
+		"More than 3,000 years",
+		"More than 6,000 years",
+		"More than 10,000 years"
+	],
+	"answer" : 1
+}
+
+
+{
+	"question" : "Who is buried in Whitefriar Street Church in Dublin?",
+	"options" : [
+		"King Henry VIII",
+		"St Valentine",
+		"Bram Stoker",
+		"Hans Christian Anderson"
+	],
+	"answer" : 1
+}
+
+
+{
+	"question" : "Which famous building was designed by Irish born architect James Hoban?",
+	"options" : [
+		"The Eiffel Tower",
+		"Tower Bridge London",
+        "The Whitehouse",
+		"The Statue of Liberty"
+	],
+	"answer" : 2
+}
+
+
+{
+	"question" : "Which is the longest river in Ireland?",
+	"options" : [
+		"River Shannon",
+		"River Liffey",
+		"River Barrow",
+		"River Suir"
+	],
+	"answer" : 0
+}
+
+
+{
+	"question" : "How many counties are there in Ireland?",
+	"options" : [
+		"27",
+		"28",
+		"30",
+		"32"
+	],
+	"answer" : 3
+}
+
+
+{
+	"question" : "In which county was the first ever potato planted?",
+	"options" : [
+		"Cork",
+        "Derry",
+		"Galway",
+		"Kildare"
+	],
+	"answer" : 0
+}
+
+
+
+{
+	"question" : "Which of these illegal in Ireland today?",
+	"options" : [
+		"Brewing your own beer",
+		"A student walking through Trinity college with a sword",
+		"To be drunk in public",
+		"A cow being exposed to wild dogs or pirates"
+	],
+	"answer" : 2
+}
+
+{
+	"question" : "Where was St. Patrick born?",
+	"options" : [
+		"Ireland",
+		"England",
+		"Wales",
+		"Scotland"
+	],
+	"answer" : 2
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,45 +1,170 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Down It!
+---
 
-Welcome USER_NAME,
+A quiz-based game where you can score in pints of Guinness designed as a way for family and friends to have fun and connect online to celebrate St. Patricks Day. 
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use.
+View the live project [here]()
 
-## Gitpod Reminders
+View the repository in GitHub [here]()
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
 
-`python3 -m http.server`
+## Contents 
+---
+* UX
+  * Project Goals & Objectives 
+  * User Goals
+  * Stakeholder Goals
+  * User Requirements and Expectations 
+  * Design choices
+    * Layout & Wireframes
+    * Colours
+    * Icons
+    * Fonts
 
-A blue button should appear to click: *Make Public*,
+* Technologies 
+  * Languages
+  * Libraries
 
-Another blue button should appear to click: *Open Browser*.
+* Features
+  * Included in current deployment
+  * Future implementations
 
-To run a backend Python file, type `python3 app.py`, if your Python file is named `app.py` of course.
+* Testing 
+  *  Development testing 
+  *  Design edits
+  *  Pre-Deployment validation testing
+  *  Peer-code review & mentor feedback 
+  *  Post-Deployment Results
 
-A blue button should appear to click: *Make Public*,
+* Bugs
+  *  Development Bug & Fixes
+  *  Pre-Deployment Bugs & Fixes
 
-Another blue button should appear to click: *Open Browser*.
+* Deployment 
+  * Method
+  
+* Credits
 
-In Gitpod you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+# UX #
+---
+### Project Goals & Objectives 
+---
+* To provide a free quiz-based game that serves to;
+  1) **provide collaborative entertainment** for the user 
+  2) **record high scores** to compare and compete with friends and family  
+  3) **provide trivia** based on facts about Ireland 
+  4) enable people to **celebrate St Patrick's Day** in a fun way from a distance
+ 
 
-## Updates Since The Instructional Video
+### User Goals 
+---
+1) As a **Potential player of the game**, I want to;
+   1) Easily **understand how** to play the game with simple instructions.   
+   2) Access and **play the game** in a simple manner with feedback for my answers along the way. 
+   3) Compete with and compare to my friends by tracking scores through a **leaderboard**, on-page scoring or similar. 
+  
+  
+### Stakeholder Goals 
+---
+* To encourage as many users as possible to;
+  1) **Play & enjoy** the game
+  2) **Share** the results on social media. 
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+### User Requirements and Expectations 
+---
+1) Responsive design for a primarily mobile use expected
+2) A fun way to score and play 
+3) Easy to see high scores 
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+### Design choices 
+---
+* Layout & Wireframes
+  *
+* Colours
+  * A pallet based on colours associated with both Ireland and Guinness to give a St. Patrick’s Day vibe to the players! (key colours:  Green, orange, white, black) 
+  
+* Icons 
+  * Primary Icons should be based around the main theme of Guiness 
+* Imagery  
+  * 
+* Fonts
+  * 
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+### Technologies Used
+---
+  * Languages;
+    *  [HTML5](https://en.wikipedia.org/wiki/HTML5)
+    *  [CSS3](https://en.wikipedia.org/wiki/CSS)
+    *  [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+  * Libraries, Frameworks & Resources;
+    *  [jQuery](https://jquery.com/) 
+    *  [GitHub](https://github.com/) is used to file the repository
+    *  [GitHub Pages](https://pages.github.com/) was used to deploy the site
+    *  [GitPod](https://gitpod.io) was used for development and version control
+    *  [Figma](https://figma.com) was used to create wireframes and create colour scheme
+    *  [Google Dev Tools](https://developers.google.com/web/tools/chrome-devtools) has been invaluable for solving issues and bugs and testing responsiveness. 
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+### Features
+---
+* Included in current deployment;
+  * Function to add the user name 
+  * Quiz presented as multiple choice buttons
+  * Leaderboard displaying score ranking based on username
 
---------
 
-Happy coding!
+### Testing 
+---
+*  Development testing 
+    *
+    *  
+    * 
+    * 
+ 
+*  Validation testing;
+ 
+
+
+
+*  User Goal Testing;
+
+
+
+### User Goals 
+---
+
+
+### Bugs
+---
+
+### Deployment 
+---
+#### GitHub Pages
+
+This project is deployed on GitHub Pages using the following method;
+1) Log in to GitHub Pages and click on 'repositories'
+2) Find the correct repository ([repository](https://github.com/GJSayers/downit) that you want to publish to pages. 
+3) Go to settings from within the repository. 
+4) Scroll quite far down the page to find the GitHub Pages section. 
+5) Under source, there are three buttons select the branch button (at time of writing the first button of the three) and choose 'Master'. 
+6) Once the page has refreshed (it can take a while) when you scroll back down you will see a green bar with a tick showing that your site is published. 
+
+#### Forking the GitHub repository
+
+To make a copy of the repository, which may be necessary if you wish to make changes without affecting the original using this method;
+1) Ensure you are logged in to GitHub
+2) The Fork button is on the top right of the page, above settings and below your github icon.  Click on it to make a copy of the original. 
+  
+### Credits
+---
+
+
+### Acknowledgements
+--- 
+
+Source for interesting facts about Ireland and St Patricks day;
+
+* https://www.irelandbeforeyoudie.com/50-shocking-facts-about-ireland-you-probably-didnt-know/
