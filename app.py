@@ -86,16 +86,11 @@ def quiz():
 
     #Get the list of questions already asked
     question_list = get_question_list()
-    print(question_list)
-    score = get_score()
 
     #If the player has answered a question
     if 'answer' in request.form:
         #check if they got the right answer
-        print(question_list[-1])
         question = mongo.db.questions.find_one( {"_id" : ObjectId(question_list[-1])} )
-        print(question)
-        print(request.form['answer'])
         if question['answer'] == int(request.form['answer']):
             inc_score()
 
