@@ -159,7 +159,7 @@ main {
   background-color: red;
 }
 /* Indicates the question is right if it's a correct option AND selected */
-.quiz-option.correct input[type="radio"]:checked + div {
+.quiz-option.correct div {
   background-color: green;
 }
 
