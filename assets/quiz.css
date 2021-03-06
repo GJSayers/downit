@@ -128,6 +128,12 @@
     background-color: orange;
   }
   /* Hides the radio buttons while allowing them to still function */
+  .quiz-option div{
+    height: 50px;
+    line-height: 50px;
+    display: inline-block;
+  }
+
   .quiz-option input[type="radio"] {
     position: absolute;
     opacity: 0;
