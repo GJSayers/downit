@@ -113,10 +113,10 @@
    */
   /* Default styling for quiz options */
   .quiz-option div {
+    line-height: 50px;
     display: inline-block;
-  
     width: 75vw;
-    height: 50px;
+    min-height: 50px;
     background: #FF7900;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin: 15px auto;
@@ -128,12 +128,6 @@
     background-color: orange;
   }
   /* Hides the radio buttons while allowing them to still function */
-  .quiz-option div{
-    height: 50px;
-    line-height: 50px;
-    display: inline-block;
-  }
-
   .quiz-option input[type="radio"] {
     position: absolute;
     opacity: 0;
