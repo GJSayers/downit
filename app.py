@@ -49,8 +49,12 @@ def home():
 #    session["test"] = templist
 
 
-@app.route("/quiz")
+@app.route("/quiz", methods=["GET", "POST"])
 def quiz():
+    if request.method == "POST":
+        if 'player-name' in request.form:
+            session['player'] = request.form['player-name']
+
     question = list(mongo.db.questions.aggregate([
         { "$sample" : { "size" : 1 } }
     ]))
@@ -81,10 +85,10 @@ def add_question():
         new_question = {
             "question" : request.form["question"],
             "options" : [
-                request.form["option_one"],
-                request.form["option_two"],
-                request.form["option_three"],
-                request.form["option_four"]
+                request.form["option_1"],
+                request.form["option_2"],
+                request.form["option_3"],
+                request.form["option_4"]
             ],
             "answer" : int(request.form["answer"])
         }
