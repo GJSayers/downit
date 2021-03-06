@@ -5,6 +5,7 @@ $( "#quiz-player-form .player-name" ).click(function() {
   $( this ).val('');
 });
 
+// Triggered when answer is submitted
 $( "input[name='answer']" ).change(function(event) {
   console.log( `Selected option: ${$( this ).val()}` );
   //Player has selected so disable the other options
@@ -13,8 +14,16 @@ $( "input[name='answer']" ).change(function(event) {
   submitFormAJAX($( "#quiz-form" )[0], checkAnswerCallback);
 });
 
+//AJAX answer check callback
 function checkAnswerCallback(responce) {
   console.log(responce);
+  /*
+  TODO: Highlight correct/wrong answers
+        Show next question button
+  responce.correct_answer = the 0-based index of the correct answer
+    (should map to radio button value)
+  responce.player_correct = true/false whether the player selected the correct answer
+  */
 }
 
 /*
