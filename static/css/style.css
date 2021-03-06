@@ -34,6 +34,10 @@ footer {
   height: 3rem;
 }
 
+main {
+  display: block;
+}
+
 /*
  * Home page styles
  */
