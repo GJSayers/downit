@@ -21,19 +21,16 @@ body {
   font-size: 16px;
 }
 
-main {
-  padding-bottom: 3rem;
-}
-
 footer {
   color: #f8f8f8;
   background-color: rgba(0, 154, 73, 0.9);
   font-family: 'Roboto Mono', monospace;
   font-size: 0.75em;
   position: fixed;
+  padding: 0 25px;
   left: 0;
   bottom: 0;
-  width: 100%;
+  right: 0;
   height: 3rem;
 }
 
@@ -45,7 +42,7 @@ footer {
   font-family: 'Ribeye', cursive;
   font-size: 72px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-top: 25px;
+  margin: 1vh 0;
 }
 
 .welcome-text {
@@ -55,6 +52,9 @@ footer {
   border-radius: 5px;
   padding: 10px;
   margin: 10px auto;
+
+/*  max-height: 50vh;
+  overflow-y: scroll;*/
 }
 
 #quiz-player-form .player-name {
@@ -74,12 +74,18 @@ footer {
 #quiz-player-form input[type = 'submit'] {
   display: block;
   width: 275px;
-  height: 75px;
+  height: 50px;
   background: #FF7900;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 20px auto;
+  margin: 15px auto;
   border-radius: 5px;
   font-family: 'Roboto Mono', monospace;
   font-size: 22px;
   letter-spacing: 0.13em;
+}
+
+@media only screen and (max-width: 400px) {
+  footer {
+    display: none;
+  }
 }
