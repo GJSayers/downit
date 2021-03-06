@@ -5,8 +5,6 @@ from flask import ( Flask, flash, render_template, redirect,
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
-from sys import getsizeof
-
 if os.path.exists("env.py"):
     import env
 
@@ -23,7 +21,7 @@ mongo = PyMongo(app)
 
 
 def dev_only(func):
-    """ Disables a wrapped route if not developing """
+    """ Disables a wrapped route if not in development. """
     @wraps(func)
     def route(*args, **kwargs):
         if DEVELOPING:
@@ -36,6 +34,7 @@ def dev_only(func):
 @app.route("/")
 @app.route("/home")
 def home():
+    """ Homepage route. """
     return render_template("home.html")
 
 #    id_list = []
@@ -49,22 +48,29 @@ def home():
 #    session["test"] = templist
 
 
-@app.route("/quiz")
+@app.route("/quiz", methods=["GET", "POST"])
 def quiz():
+    """ Quiz page route. """
+    if request.method == "POST":
+        if 'player-name' in request.form:
+            session['player'] = request.form['player-name']
+
     question = list(mongo.db.questions.aggregate([
         { "$sample" : { "size" : 1 } }
     ]))
 
-    return render_template("quiz.html", questions = question)
+    return render_template("quiz.html", question = question[0])
 
 
 @app.route("/leaderboard")
 def leaderboard():
+    """ Leaderboard route """
     return "Leaderboard here"
 
 
-@app.route("/answer", methods=["POST"])
+@app.route("/AJAX_answer", methods=["POST"])
 def answer():
+    """ Accepts an answer as an ajax request and returns if it is correct. """
     return False
 
 
@@ -76,15 +82,15 @@ def answer():
 @app.route("/add_question", methods=["GET", "POST"])
 @dev_only
 def add_question():
-    """ Adds a single question to be added to the database. """
+    """ Adds a single question to the database. """
     if request.method == "POST":
         new_question = {
             "question" : request.form["question"],
             "options" : [
-                request.form["option_one"],
-                request.form["option_two"],
-                request.form["option_three"],
-                request.form["option_four"]
+                request.form["option_1"],
+                request.form["option_2"],
+                request.form["option_3"],
+                request.form["option_4"]
             ],
             "answer" : int(request.form["answer"])
         }
