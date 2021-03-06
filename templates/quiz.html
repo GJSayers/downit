@@ -2,7 +2,8 @@
 
 {% block content %}
 <main>
-  <form id="quiz-form" class="question-card"> {#action="/AJAX_answer" method="POST">#}
+  <form id="quiz-form" class="question-card" action="{{ url_for('quiz') }}"
+    method="POST" data-ajax="{{ url_for('AJAX_answer') }}">
     <p class="quiz-question">{{ question.question }}</p>
     {% for option in question.options %}
       {#<div class="quiz-option">#}

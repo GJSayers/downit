@@ -100,7 +100,7 @@ def leaderboard():
 
 
 @app.route("/AJAX_answer", methods=["POST"])
-def answer():
+def AJAX_answer():
     """ Accepts an answer as an ajax request and returns if it is correct. """
     return False
 
