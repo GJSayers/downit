@@ -65,8 +65,6 @@ def quiz():
     if 'player_name' in request.form:
         session['player'] = request.form['player_name']
 
-
-
     #Get the list of questions already asked
     exclude_list = get_question_list()
     ##Get the next question
