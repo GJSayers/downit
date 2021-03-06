@@ -48,7 +48,25 @@ def add_question_list(id):
     if "questions" not in session:
         session["questions"] = []
 
-    session["questions"].append(str(id))
+    tempList = session["questions"]
+    tempList.append(str(id))
+    session["questions"] = tempList
+
+
+def get_score():
+    """ Returns the player's current score """
+    if "player_score" not in session:
+        session["player_score"] = 0
+
+    return session["player_score"]
+
+
+def inc_score():
+    """ Adds one to player score """
+    if "player_score" not in session:
+        session["player_score"] = 0
+
+    session["player_score"] += 1
 
 
 @app.route("/")
@@ -61,16 +79,30 @@ def home():
 @app.route("/quiz", methods=["POST"])
 def quiz():
     """ Quiz page route. """
-
+    #If this is the start of the game, add player name to session
     if 'player_name' in request.form:
         session['player'] = request.form['player_name']
+        session['player_score'] = 0
 
     #Get the list of questions already asked
-    exclude_list = get_question_list()
+    question_list = get_question_list()
+    print(question_list)
+    score = get_score()
+
+    #If the player has answered a question
+    if 'answer' in request.form:
+        #check if they got the right answer
+        print(question_list[-1])
+        question = mongo.db.questions.find_one( {"_id" : ObjectId(question_list[-1])} )
+        print(question)
+        print(request.form['answer'])
+        if question['answer'] == int(request.form['answer']):
+            inc_score()
+
     ##Get the next question
     question = list(mongo.db.questions.aggregate([
         #Excludes questions already asked
-        { "$match" : { "_id" : {"$nin" : exclude_list} }},
+        { "$match" : { "_id" : {"$nin" : question_list} }},
         #Returns one random record
         { "$sample" : { "size" : 1 } }
     ]))

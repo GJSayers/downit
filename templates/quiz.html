@@ -6,16 +6,15 @@
     method="POST" data-ajax="{{ url_for('AJAX_answer') }}">
     <p class="quiz-question">{{ question.question }}</p>
     {% for option in question.options %}
-      {#<div class="quiz-option">#}
-        <label class="quiz-option">
-          <input type="radio" name="answer" value="{{ loop.index - 1 }}">
-          <div>
-            {{- option -}}
-          </div>
-        </label>
-      {#</div>#}
+      <label class="quiz-option">
+        <input type="radio" name="answer" value="{{ loop.index - 1 }}">
+        <div>
+          {{- option -}}
+        </div>
+      </label>
     {% endfor %}
+    <input type="submit" value="Next Question">
   </form>
-  <p>{{ session.player }}</p>
+  <p>{{ session.player }}'s score is: {{ session.player_score }}</p>
 </main>
 {% endblock %}
