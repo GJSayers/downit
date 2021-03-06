@@ -5,18 +5,15 @@
   <form id="quiz-form" class="question-card"> {#action="/AJAX_answer" method="POST">#}
     <p class="quiz-question">{{ question.question }}</p>
     {% for option in question.options %}
-      <div class="quiz-option">
-        <label>
+      {#<div class="quiz-option">#}
+        <label class="quiz-option">
           <input type="radio" name="answer" value="{{ loop.index - 1 }}">
           <div>
             {{- option -}}
           </div>
         </label>
-      </div>
+      {#</div>#}
     {% endfor %}
   </form>
 </main>
 {% endblock %}
-
-{#id="option-{{ loop.index }}"#}
-{# for="option-{{ loop.index }}"#}
