@@ -2,6 +2,7 @@
 
 {% block content %}
 <main>
+  <input type="hidden" value="{{ session.player_score }}" id="player_score">
   <form id="quiz-form" class="question-card" action="{{ url_for('quiz') }}"
     method="POST" data-ajax="{{ url_for('AJAX_answer') }}">
     <p class="quiz-question">{{ question.question }}</p>
