@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div>
+  <div style="background-color:rgba(0,0,0,0.5); padding:10px;">
     <p>Total questions: {{ questions.count() }}</p>
     {% for question in questions %}
       <br>
