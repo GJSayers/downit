@@ -6,10 +6,10 @@ $( "#quiz-player-form .player-name" ).click(function() {
 });
 
 // Triggered when answer is submitted
-$( "input[name='answer']" ).change(function(event) {
+$( "#quiz-form input[name='answer']" ).change(function(event) {
   console.log( `Selected option: ${$( this ).val()}` );
   //Player has selected so disable the other options
-  $( "input[name='answer']:not(:checked)" ).prop('disabled', true);
+  $( "#quiz-form input[name='answer']:not(:checked)" ).prop('disabled', true);
   //Submit the answer to the server
   submitFormAJAX($( "#quiz-form" )[0], checkAnswerCallback);
 });
