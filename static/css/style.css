@@ -126,14 +126,27 @@ main {
 
   background-color: orange;
 }
+
 .quiz-option > input[type="radio"] {
   position: absolute;
   opacity: 0;
 }
+
 .quiz-option > input[type="radio"]:checked + label div {
   background-color: blue;
 }
 
+.quiz-option.wrong > input[type="radio"]:checked + label div {
+  background-color: red;
+}
+
+.quiz-option.correct > input[type="radio"]:checked + label div {
+  background-color: green;
+}
+
+/*
+ * Media Queries
+ */
 @media only screen and (max-width: 400px) {
   footer {
     display: none;
