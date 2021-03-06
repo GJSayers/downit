@@ -43,7 +43,7 @@ def get_question_list():
     return id_list
 
 
-def add_question_list(id):
+def add_question_to_list(id):
     """ Adds a question to the list of asked questions. Takes ObjectId. """
     if "questions" not in session:
         session["questions"] = []
@@ -104,8 +104,8 @@ def quiz():
     #We shouldn't run out of questions, but just in case
     if question == []:
         return redirect("finished")
-
-    add_question_list(question[0]["_id"])
+    #Add the new question to the list
+    add_question_to_list(question[0]["_id"])
 
     return render_template("quiz.html", question = question[0])
 
@@ -117,12 +117,17 @@ def finished():
     if "questions" in session:
         session["questions"] = []
 
+    #TODO: GAME COMPLETION LOGIC HERE
+
     return "Game Over"
 
 
 @app.route("/leaderboard")
 def leaderboard():
     """ Leaderboard route """
+
+    #TODO: DISPLAY LEADERBOARD
+
     return "Leaderboard here"
 
 
