@@ -3,18 +3,17 @@ $(document).ready(function () {
     const quizOption = document.getElementsByClassName("quiz-option");
     const options = Array.from(document.getElementsByClassName("options"));
 
-    let correctAnswer 
+    let correctAnswer = (answerValue - quizOption.value === 0);
 
 $(".quiz-option.options").addEventListner("click",answerFeedback);
 
-    let answerFeedback (function(){
+    let answerFeedback {
         quizOption.options.forEach(); {
 
             if (quizOption.options === correctAnswer) {
 
                 $("quiz-option").removeClass("quiz-option input").addClass("quiz-option correct input");
-
-                
+  
             } else {
                 
                  $("quiz-option").removeClass("quiz-option input").addClass("quiz-option wrong input");
