@@ -31,35 +31,68 @@ def dev_only(func):
     return route
 
 
+def get_question_list():
+    """ Returns the list of questions already asked. """
+    if "questions" not in session:
+        session["questions"] = []
+
+    id_list = []
+    for id in session["questions"]:
+        id_list.append(ObjectId(id))
+
+    return id_list
+
+
+def add_question_list(id):
+    """ Adds a question to the list of asked questions. Takes ObjectId. """
+    if "questions" not in session:
+        session["questions"] = []
+
+    session["questions"].append(str(id))
+
+
 @app.route("/")
 @app.route("/home")
 def home():
     """ Homepage route. """
     return render_template("home.html")
 
-#    id_list = []
-#    for id in session["test"]:
-#        id_list.append(ObjectId(id))
 
-#    if "test" not in session:
-#        session["test"] = []
-#    templist = session["test"]
-#    templist.append(str(question[0]["_id"]))
-#    session["test"] = templist
-
-
-@app.route("/quiz", methods=["GET", "POST"])
+@app.route("/quiz", methods=["POST"])
 def quiz():
     """ Quiz page route. """
-    if request.method == "POST":
-        if 'player-name' in request.form:
-            session['player'] = request.form['player-name']
 
+    if 'player_name' in request.form:
+        session['player'] = request.form['player_name']
+
+
+
+    #Get the list of questions already asked
+    exclude_list = get_question_list()
+    ##Get the next question
     question = list(mongo.db.questions.aggregate([
+        #Excludes questions already asked
+        { "$match" : { "_id" : {"$nin" : exclude_list} }},
+        #Returns one random record
         { "$sample" : { "size" : 1 } }
     ]))
+    #We shouldn't run out of questions, but just in case
+    if question == []:
+        return redirect("finished")
+
+    add_question_list(question[0]["_id"])
 
     return render_template("quiz.html", question = question[0])
+
+
+@app.route("/finished")
+def finished():
+    """ Called when the game ends. """
+    #The game has finished, so clear the asked questions list
+    if "questions" in session:
+        session["questions"] = []
+
+    return "Game Over"
 
 
 @app.route("/leaderboard")
