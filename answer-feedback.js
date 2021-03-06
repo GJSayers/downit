@@ -1,16 +1,46 @@
 $(document).ready(function () {
 
+    const quizOption = document.getElementsByClassName("quiz-option");
+    const options = Array.from(document.getElementsByClassName("options"));
 
-    document.getElementById("button").addEventListener('click',answerFeeback);
+    let correctAnswer 
 
-    let answerFeedback {
-        if (question.option === answer.option) {
+$(".quiz-option.options").addEventListner("click",answerFeedback);
 
-            $("button").removeClass("button").addClass("button-correct");
-            
-        } else {
+    let answerFeedback (function(){
+        quizOption.options.forEach(); {
 
-            $("button").removeClass("button").addClass("button-incorrect");
-            
+            if (quizOption.options === correctAnswer) {
+
+                $("quiz-option").removeClass("quiz-option input").addClass("quiz-option correct input");
+
+                
+            } else {
+                
+                 $("quiz-option").removeClass("quiz-option input").addClass("quiz-option wrong input");
+            }
+            const number = options.dataset["number"];
+
         }
     }
+
+
+   // function()
+
+   // .quiz-form.forEach(.quiz-option => {
+ //.quiz-option.addEventListner("click",)
+        
+  //  });
+
+   // document.getElementById("button").addEventListener('click',answerFeeback);
+
+  //  let answerFeedback function(){
+  //      if (question.option === answer.option) {
+
+   //         $("button").removeClass("button").addClass("button-correct");
+            
+   //     } else {
+
+   //         $("button").removeClass("button").addClass("button-incorrect");
+            
+        }));
