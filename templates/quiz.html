@@ -1,13 +1,19 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div>
-    {% for question in questions %}
-      <p>{{ question.question }}</P>
-      {% for option in question.options %}
-        <p>{{ loop.index }} - {{ option }}</p>
-      {% endfor %}
-      <p>Answer: {{ question.answer + 1 }}</p>
+<main>
+  <form id="quiz-form" class="question-card"> {#action="/AJAX_answer" method="POST">#}
+    <p class="quiz-question">{{ question.question }}</p>
+    {% for option in question.options %}
+      <div class="quiz-option">
+        <input id="option-{{ loop.index }}" type="radio" name="answer" value="{{ loop.index - 1 }}">
+        <label for="option-{{ loop.index }}">
+          <div>
+            {{ option }}
+          </div>
+        </label>
+      </div>
     {% endfor %}
-  </div>
+  </form>
+</main>
 {% endblock %}

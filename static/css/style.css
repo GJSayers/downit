@@ -49,6 +49,7 @@ main {
   margin: 1vh 0;
 }
 
+/* Based on example here: https://lea.verou.me/2012/04/background-attachment-local/ */
 .welcome-text {
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
   width: 75vw;
@@ -105,6 +106,32 @@ main {
   font-family: 'Roboto Mono', monospace;
   font-size: 22px;
   letter-spacing: 0.13em;
+}
+
+/*
+ * Quiz
+ */
+.quiz-option label div {
+  display: inline-block;
+
+  width: 275px;
+  height: 50px;
+  background: #FF7900;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 15px auto;
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  letter-spacing: 0.13em;
+
+  background-color: orange;
+}
+.quiz-option > input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+.quiz-option > input[type="radio"]:checked + label div {
+  background-color: blue;
 }
 
 @media only screen and (max-width: 400px) {

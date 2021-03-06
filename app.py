@@ -59,7 +59,7 @@ def quiz():
         { "$sample" : { "size" : 1 } }
     ]))
 
-    return render_template("quiz.html", questions = question)
+    return render_template("quiz.html", question = question[0])
 
 
 @app.route("/leaderboard")
