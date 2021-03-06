@@ -5,16 +5,11 @@
   <form id="quiz-form" class="question-card"> {#action="/AJAX_answer" method="POST">#}
     <p class="quiz-question">{{ question.question }}</p>
     {% for option in question.options %}
-      <div class="quiz-option
-      {% if loop.index == 2 -%}
-        correct
-      {%- else -%}
-        wrong
-      {%- endif -%}">
-        <input id="option-{{ loop.index }}" type="radio" name="answer" value="{{ loop.index - 1 }}">
-        <label for="option-{{ loop.index }}">
+      <div class="quiz-option">
+        <label>
+          <input type="radio" name="answer" value="{{ loop.index - 1 }}">
           <div>
-            {{ option }}
+            {{- option -}}
           </div>
         </label>
       </div>
@@ -22,3 +17,6 @@
   </form>
 </main>
 {% endblock %}
+
+{#id="option-{{ loop.index }}"#}
+{# for="option-{{ loop.index }}"#}

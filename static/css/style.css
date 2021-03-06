@@ -127,20 +127,20 @@ main {
   background-color: orange;
 }
 
-.quiz-option > input[type="radio"] {
+.quiz-option label input[type="radio"] {
   position: absolute;
   opacity: 0;
 }
 
-.quiz-option > input[type="radio"]:checked + label div {
+.quiz-option input[type="radio"]:checked + div {
   background-color: blue;
 }
 
-.quiz-option.wrong > input[type="radio"]:checked + label div {
+.quiz-option.wrong label input[type="radio"]:checked + div {
   background-color: red;
 }
 
-.quiz-option.correct > input[type="radio"]:checked + label div {
+.quiz-option.correct label input[type="radio"]:checked + div {
   background-color: green;
 }
 
