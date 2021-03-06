@@ -1,13 +1,22 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div>
-    {% for question in questions %}
-      <p>{{ question.question }}</P>
-      {% for option in question.options %}
-        <p>{{ loop.index }} - {{ option }}</p>
-      {% endfor %}
-      <p>Answer: {{ question.answer + 1 }}</p>
+<main>
+  <input type="hidden" value="{{ session.player_score }}" id="player_score">
+  <form id="quiz-form" class="question-card" action="{{ url_for('quiz') }}"
+    method="POST" data-ajax="{{ url_for('AJAX_answer') }}">
+    <p class="quiz-question">{{ question.question }}</p>
+    {% for option in question.options %}
+      <label class="quiz-option">
+        <input type="radio" name="answer" value="{{ loop.index - 1 }}">
+        <div>
+          {{- option -}}
+        </div>
+      </label>
     {% endfor %}
-  </div>
+    {# Submits the form, should be hidden until AJAX returns #}
+    <input type="submit" value="Next Question">
+  </form>
+  <p>{{ session.player }}'s score is: {{ session.player_score }}</p>
+</main>
 {% endblock %}

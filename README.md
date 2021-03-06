@@ -3,9 +3,9 @@
 
 A quiz-based game where you can score in pints of Guinness designed as a way for family and friends to have fun and connect online to celebrate St. Patricks Day. 
 
-View the live project [here]()
+View the live project [here](https://down-it.herokuapp.com/)
 
-View the repository in GitHub [here]()
+View the repository in GitHub [here](https://github.com/GJSayers/downit)
 
 
 ## Contents 

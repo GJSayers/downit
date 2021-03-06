@@ -1,11 +1,15 @@
+body, html {
+  margin: 0;
+  padding: 0;
+}
 body {
   background: url("../assets/quiz-background.jpg") no-repeat;
   background-position:center;
   background-size: cover;
   text-align: center;
-  margin: 0;
-  padding: 0;
   position: relative;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
   overflow-y: hidden
 }

@@ -5,8 +5,6 @@ from flask import ( Flask, flash, render_template, redirect,
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 
-from sys import getsizeof
-
 if os.path.exists("env.py"):
     import env
 
@@ -23,7 +21,7 @@ mongo = PyMongo(app)
 
 
 def dev_only(func):
-    """ Disables a wrapped route if not developing """
+    """ Disables a wrapped route if not in development. """
     @wraps(func)
     def route(*args, **kwargs):
         if DEVELOPING:
@@ -33,39 +31,118 @@ def dev_only(func):
     return route
 
 
+def get_question_list():
+    """ Returns the list of questions already asked. """
+    if "questions" not in session:
+        session["questions"] = []
+
+    id_list = []
+    for id in session["questions"]:
+        id_list.append(ObjectId(id))
+
+    return id_list
+
+
+def add_question_to_list(id):
+    """ Adds a question to the list of asked questions. Takes ObjectId. """
+    if "questions" not in session:
+        session["questions"] = []
+
+    tempList = session["questions"]
+    tempList.append(str(id))
+    session["questions"] = tempList
+
+
+def get_score():
+    """ Returns the player's current score """
+    if "player_score" not in session:
+        session["player_score"] = 0
+
+    return session["player_score"]
+
+
+def inc_score():
+    """ Adds one to player score """
+    if "player_score" not in session:
+        session["player_score"] = 0
+
+    session["player_score"] += 1
+
+
 @app.route("/")
 @app.route("/home")
 def home():
-    return "Downit Home route"
-
-#    id_list = []
-#    for id in session["test"]:
-#        id_list.append(ObjectId(id))
-
-#    if "test" not in session:
-#        session["test"] = []
-#    templist = session["test"]
-#    templist.append(str(question[0]["_id"]))
-#    session["test"] = templist
+    """ Homepage route. """
+    return render_template("home.html")
 
 
-@app.route("/quiz")
+@app.route("/quiz", methods=["POST"])
 def quiz():
+    """ Quiz page route. """
+    #If this is the start of the game, add player name to session
+    if 'player_name' in request.form:
+        session['player'] = request.form['player_name']
+        session['player_score'] = 0
+
+    #Get the list of questions already asked
+    question_list = get_question_list()
+
+    #If the player has answered a question
+    if 'answer' in request.form:
+        #check if they got the right answer
+        question = mongo.db.questions.find_one( {"_id" : ObjectId(question_list[-1])} )
+        if question['answer'] == int(request.form['answer']):
+            inc_score()
+
+    ##Get the next question
     question = list(mongo.db.questions.aggregate([
+        #Excludes questions already asked
+        { "$match" : { "_id" : {"$nin" : question_list} }},
+        #Returns one random record
         { "$sample" : { "size" : 1 } }
     ]))
+    #We shouldn't run out of questions, but just in case
+    if question == []:
+        return redirect("finished")
+    #Add the new question to the list
+    add_question_to_list(question[0]["_id"])
 
-    return render_template("quiz.html", questions = question)
+    return render_template("quiz.html", question = question[0])
+
+
+@app.route("/finished")
+def finished():
+    """ Called when the game ends. """
+    #The game has finished, so clear the asked questions list
+    if "questions" in session:
+        session["questions"] = []
+
+    #TODO: GAME COMPLETION LOGIC HERE
+
+    return "Game Over"
 
 
 @app.route("/leaderboard")
 def leaderboard():
+    """ Leaderboard route """
+
+    #TODO: DISPLAY LEADERBOARD
+
     return "Leaderboard here"
 
 
-@app.route("/answer", methods=["POST"])
-def answer():
-    return False
+@app.route("/AJAX_answer", methods=["POST"])
+def AJAX_answer():
+    """ Accepts an answer as an ajax request and returns if it is correct. """
+    responce = {"correct_answer" : -1, "player_correct" : False}
+
+    question_list = get_question_list()
+    if "answer" in request.json:
+        question = mongo.db.questions.find_one( {"_id" : ObjectId(question_list[-1])} )
+        responce['correct_answer'] = question['answer']
+        responce['player_correct'] = (question['answer'] == int(request.json['answer']))
+
+    return responce
 
 
 #
@@ -76,15 +153,15 @@ def answer():
 @app.route("/add_question", methods=["GET", "POST"])
 @dev_only
 def add_question():
-    """ Adds a single question to be added to the database. """
+    """ Adds a single question to the database. """
     if request.method == "POST":
         new_question = {
             "question" : request.form["question"],
             "options" : [
-                request.form["option_one"],
-                request.form["option_two"],
-                request.form["option_three"],
-                request.form["option_four"]
+                request.form["option_1"],
+                request.form["option_2"],
+                request.form["option_3"],
+                request.form["option_4"]
             ],
             "answer" : int(request.form["answer"])
         }
