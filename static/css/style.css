@@ -1,0 +1,173 @@
+/*
+ * Global styles
+ */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: url("../images/quiz-background.jpg") no-repeat;
+  background-position:center;
+  background-size: cover;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 16px;
+}
+
+footer {
+  color: #f8f8f8;
+  background-color: rgba(0, 154, 73, 0.9);
+  font-family: 'Roboto Mono', monospace;
+  font-size: 0.75em;
+  position: fixed;
+  padding: 0 25px;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 3rem;
+}
+
+main {
+  display: block;
+}
+
+/*
+ * Home page styles
+ */
+.page-title {
+  color: #f8f8f8;
+  font-family: 'Ribeye', cursive;
+  font-size: 72px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 1vh 0;
+}
+
+.welcome-text {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
+  width: 75vw;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px auto;
+  /* Based on example here: https://lea.verou.me/2012/04/background-attachment-local/
+     prevents the welcome text getting too large, and shows scroll bars and shadows
+     if there is overflow*/
+  max-height: 50vh;
+  overflow-y: auto;
+  background:
+    /* Shadow covers */
+    linear-gradient(#009a49 30%, rgba(0, 154, 73, 0)),
+    linear-gradient(rgba(0, 154, 73, 0), #009a49 70%) 0 100%,
+    /* Shadows*/
+    radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)),
+    radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)) 0 100%;
+  background:
+    /* Shadow covers */
+    linear-gradient(#009a49 30%, rgba(0, 154, 73, 0)),
+    linear-gradient(rgba(0, 154, 73, 0), #009a49 70%) 0 100%,
+    /* Shadows*/
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)) 0 100%;
+
+  background-repeat: no-repeat;
+  background-color: rgba(0, 154, 73, 0.9);
+  background-size: 100% 50px, 100% 50px, 100% 20px, 100% 20px;
+  background-attachment: local, local, scroll, scroll;
+}
+
+#quiz-player-form .player-name {
+  display: block;
+  width: 275px;
+  height: 50px;
+  background: #f9f9f9;
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 20px auto;
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+  text-align: center;
+  font-size: 22px;
+  letter-spacing: 0.4em;
+}
+
+#quiz-player-form input[type = 'submit'] {
+  display: block;
+  width: 275px;
+  height: 50px;
+  background: #FF7900;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 15px auto;
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 22px;
+  letter-spacing: 0.13em;
+}
+
+/*
+ * Quiz
+ */
+#quiz-form {
+  margin-top: 25vh;
+}
+.quiz-question {
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 50px;
+  /* keeps it consistent with color scheme */
+  background-color: #009a49;
+  padding: 20px;
+}
+/* Ensures radiobuttons remain within the label */
+.quiz-option {
+  position: relative;
+  display: block;
+}
+/* Default styling for quiz options */
+.quiz-option div {
+  /* centers text vertically */
+  display: flex;          /* We need flex for align-items to work */
+  align-items: center;
+  justify-content: center;
+
+  width: 75vw;
+  min-height: 50px;
+  background: #FF7900;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 10px auto;
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  letter-spacing: 0.13em;
+  background-color: orange;
+}
+/* Hides the radio buttons while allowing them to still function */
+.quiz-option input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+/* Highlights the current selected option */
+.quiz-option input[type="radio"]:checked + div {
+  background-color: blue;
+}
+/* Indicates the question is wrong if it's an incorrect option AND selected */
+.quiz-option.wrong input[type="radio"]:checked + div {
+  background-color: red;
+}
+/* Indicates the question is right if it's a correct option AND selected */
+.quiz-option.correct div {
+  background-color: green;
+}
+
+/*
+ * Media Queries
+ */
+@media only screen and (max-width: 400px) {
+  footer {
+    display: none;
+  }
+}
