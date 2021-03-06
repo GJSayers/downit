@@ -1,27 +1,31 @@
 $(document).ready(function () {
 
-    const quizOption = document.getElementsByClassName("quiz-option");
-    const options = Array.from(document.getElementsByClassName("options"));
+    const quizOption = document.getElementsByClassName(".quiz-option");
+    const options = Array.from(document.getElementsByClassName(".options"));
+
+    let answerValue = document.getElementsById("#correctAnswer.value");
 
     let correctAnswer = (answerValue - quizOption.value === 0);
 
 $(".quiz-option.options").addEventListner("click",answerFeedback);
 
-    let answerFeedback {
+    let answerFeedback 
+    function answerFeedback(){
         quizOption.options.forEach(); {
 
             if (quizOption.options === correctAnswer) {
 
-                $("quiz-option").removeClass("quiz-option input").addClass("quiz-option correct input");
+                $("quiz-option").addClass("correct");
   
             } else {
                 
-                 $("quiz-option").removeClass("quiz-option input").addClass("quiz-option wrong input");
+                 $("quiz-option").addClass("wrong");
             }
-            const number = options.dataset["number"];
+            // const number = options.dataset["number"];
 
         }
     }
+});
 
 
    // function()
@@ -42,4 +46,4 @@ $(".quiz-option.options").addEventListner("click",answerFeedback);
 
    //         $("button").removeClass("button").addClass("button-incorrect");
             
-        }));
+    
