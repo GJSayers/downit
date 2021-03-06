@@ -111,20 +111,38 @@ main {
 /*
  * Quiz
  */
+#quiz-form {
+  margin-top: 25vh;
+}
+.quiz-question {
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 50px;
+  /* keeps it consistent with color scheme */
+  background-color: #009a49;
+  padding: 20px;
+}
+/* Ensures radiobuttons remain within the label */
+.quiz-option {
+  position: relative;
+  display: block;
+}
 /* Default styling for quiz options */
 .quiz-option div {
-  display: inline-block;
+  /* centers text vertically */
+  display: flex;          /* We need flex for align-items to work */
+  align-items: center;
+  justify-content: center;
 
   width: 75vw;
-  height: 50px;
+  min-height: 50px;
   background: #FF7900;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 15px auto;
+  margin: 10px auto;
   border-radius: 5px;
   font-family: 'Roboto Mono', monospace;
   font-size: 15px;
   letter-spacing: 0.13em;
-
   background-color: orange;
 }
 /* Hides the radio buttons while allowing them to still function */
