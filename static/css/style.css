@@ -111,9 +111,13 @@ main {
 /*
  * Quiz
  */
+/* Ensures radiobuttons remain within the label */
+.quiz-option {
+  position: relative;
+}
 /* Default styling for quiz options */
 .quiz-option div {
-  display: inline-block;
+  display: block;
 
   width: 75vw;
   height: 50px;
