@@ -10,4 +10,4 @@ const feckSound = document.getElementById('feck_sound');
 const incorrectButton = document.getElementsByClass('wrong');
 incorrectButton.addEventListener("click", function(){
   feckSound.play();
-})
+});
