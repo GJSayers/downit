@@ -119,7 +119,7 @@ main {
   margin-right: 50px;
   border-radius: 50px;
   /* keeps it consistent with color scheme */
-  background-color: #009a49;
+  background-color: #009A49;
   padding: 20px;
 }
 /* Ensures radiobuttons remain within the label */
@@ -161,6 +161,15 @@ main {
 /* Indicates the question is right if it's a correct option AND selected */
 .quiz-option.correct div {
   background-color: green;
+}
+/*
+ * Leaderboard page
+ */
+.leaderboard ul,
+.leaderboard li {
+  list-style: none;
+  padding: 0;
+  background-color: rgba(0, 154, 73, 0.25);
 }
 
 /*
