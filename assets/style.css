@@ -102,30 +102,26 @@ footer {
   height: 3rem;
 }
 
+/* --- score page --- */
 
-/* Temp CSS Form Animating the Pint */
+.time-up-message {
+  background-color: rgba(0, 154, 73, 0.9);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
+  width: 75vw;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px auto;
+}
 
-#pint {
-    width: 640px;
-    height: 700px;
-    background-position: bottom;
-    background-repeat: no-repeat;
-}
-.pint0 {
-    background-image: url("../images/pint0.png");
-}
-.pint1 {
-    background-image: url("../images/pint1.png");
-}
-.pint2 {
-    background-image: url("../images/pint2.png");
-}
-.pint3 {
-    background-image: url("../images/pint3.png");
-}
-.pint4 {
-    background-image: url("../images/pint4.png");
-}
-.pint5 {
-    background-image: url("../images/pint5.png");
+.leaderboard {
+
+position: absolute;
+width: 347px;
+height: 155px;
+left: 14px;
+top: 496px;
+
+background: #FF7900;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
 }
