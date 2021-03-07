@@ -15,21 +15,21 @@ $( "#quiz-form input[name='answer']" ).change(function(event) {
 });
 
 //AJAX answer check callback
-function checkAnswerCallback(responce) {
-  console.log(responce);
+function checkAnswerCallback(response) {
+  console.log(response);
   /*
   TODO: Highlight correct/wrong answers
         Show next question button
-  responce.correct_answer = the 0-based index of the correct answer
+  response.correct_answer = the 0-based index of the correct answer
     (should map to radio button value)
-  responce.player_correct = true/false whether the player selected the correct answer
+  response.player_correct = true/false whether the player selected the correct answer
   */
 
-  let score = responce.player_score;
+  let score = response.player_score;
   let scoreModulus = score % 5;
   let lastScore = scoreModulus - 1;
 
-  if (responce.player_correct) {
+  if (response.player_correct) {
     if (scoreModulus > 0) {
       $("#pint").effect( "bounce", "slow" ).removeClass(`pint${lastScore}`).addClass(`pint${scoreModulus}`);
     } else {
