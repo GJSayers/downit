@@ -8,7 +8,7 @@ body, html {
 
 body {
   background: url("../images/quiz-background.jpg") no-repeat;
-  background-position:center;
+  background-position: center;
   background-size: cover;
   text-align: center;
   position: relative;
@@ -111,9 +111,33 @@ main {
 /*
  * Quiz
  */
-#quiz-form {
-  margin-top: 25vh;
+#pint {
+  height: 25vh;
+  margin-top: 10px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
 }
+.pint0 {
+  background-image: url("../images/pint0.png");
+}
+.pint1 {
+  background-image: url("../images/pint1.png");
+}
+.pint2 {
+  background-image: url("../images/pint2.png");
+}
+.pint3 {
+  background-image: url("../images/pint3.png");
+}
+.pint4 {
+  background-image: url("../images/pint4.png");
+}
+.pint5 {
+  background-image: url("../images/pint5.png");
+}
+#quiz-form {}
 .quiz-question {
   margin-left: 50px;
   margin-right: 50px;
