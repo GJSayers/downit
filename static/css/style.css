@@ -193,6 +193,25 @@ max-height: 70vh;
 
 }
 
+.social-share {
+text-align: center;
+font-size: xx-large;
+color: green;
+}
+
+.fa-instagram-square {
+color: green;
+}
+
+.fa-twitter-square {
+color: green;
+}
+
+.fab:hover {
+    color: #FF7900;
+}
+
+
 /*
  * Media Queries
  */
