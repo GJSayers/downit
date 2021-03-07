@@ -114,8 +114,11 @@ main {
 /*
  * Quiz
  */
-#pint {
+#quiz_score_section {
   height: 25vh;
+}
+#pint {
+  height: 100%;/*25vh;*/
   margin-top: 10px;
   background-position: bottom;
   background-repeat: no-repeat;
@@ -172,23 +175,24 @@ main {
   background-color: orange;
 }
 /* Hides the radio buttons while allowing them to still function */
-.quiz-option input[type="radio"] {
+.quiz-option > input[type="radio"] {
   position: absolute;
   opacity: 0;
 }
 /* Highlights the current selected option */
 /* Highlights the current hovered item *if* it's *not* disabled */
-.quiz-option input[type="radio"]:checked + div,
-.quiz-option:hover input[type="radio"]:not(:disabled) + div {
+.quiz-option > input[type="radio"]:checked + div,
+.quiz-option:not(.correct) > input[type="radio"]:checked + div,
+.quiz-option:not(.wrong):not(.correct):hover > input[type="radio"]:not(:disabled) + div {
   background-color: blue;
 }
-/* Indicates the question is wrong if it's an incorrect option AND selected */
-.quiz-option.wrong input[type="radio"]:checked + div {
-  background-color: red;
-}
 /* Indicates the question is right if it's a correct option AND selected */
-.quiz-option.correct div {
+.quiz-option.correct > input[type="radio"] + div {
   background-color: green;
+}
+/* Indicates the question is wrong if it's an incorrect option AND selected */
+.quiz-option.wrong > input[type="radio"]:checked + div {
+  background-color: red;
 }
 /*
  * Leaderboard page
