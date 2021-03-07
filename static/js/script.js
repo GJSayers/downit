@@ -1,3 +1,5 @@
+var question;
+
 $( document ).ready(function () {});
 
 // Clears the player name field on click
@@ -7,39 +9,62 @@ $( "#quiz-player-form .player-name" ).click(function() {
 
 // Triggered when answer is submitted
 $( "#quiz-form input[name='answer']" ).change(function(event) {
-  console.log( `Selected option: ${$( this ).val()}` );
   //Player has selected so disable the other options
   $( "#quiz-form input[name='answer']:not(:checked)" ).prop('disabled', true);
   //Submit the answer to the server
   submitFormAJAX($( "#quiz-form" )[0], checkAnswerCallback);
 });
 
+// Shows the next quiz question
+$( "#next_question_btn" ).click(function(event) {
+  event.preventDefault();
+
+  //Fill out new question text
+  $( ".quiz-question" ).text(question.question);
+  $( ".quiz-option" ).each(function(index) {
+    $( this ).children("div").text(question.options[index]);
+  });
+
+  //Reset radio radiobuttons
+  $( "#quiz-form input[name='answer']" ).prop('disabled', false);
+  $( "#quiz-form input[name='answer']" ).prop('checked', false);
+
+  $( "#next_question_btn" ).addClass("hide");
+});
+
 //AJAX answer check callback
-function checkAnswerCallback(responce) {
-  console.log(responce);
+function checkAnswerCallback(response) {
+  let score = response.player_score;
+  let scoreModulus = score % 5;
+  let lastScore = scoreModulus - 1;
+  question = response.next_question;
+
+  // Show the next question button
+  $( "#next_question_btn" ).removeClass("hide");
   /*
   TODO: Highlight correct/wrong answers
         Show next question button
-  responce.correct_answer = the 0-based index of the correct answer
+  response.correct_answer = the 0-based index of the correct answer
     (should map to radio button value)
-  responce.player_correct = true/false whether the player selected the correct answer
+  response.player_correct = true/false whether the player selected the correct answer
   */
 
-  let score = responce.player_score;
-  let scoreModulus = score % 5;
-  let lastScore = scoreModulus - 1;
-
-  if (responce.player_correct) {
+  if (response.player_correct) {
+    // Update pint glass
     if (scoreModulus > 0) {
-      $("#pint").effect( "bounce", "slow" ).removeClass(`pint${lastScore}`).addClass(`pint${scoreModulus}`);
+      $( "#pint" ).effect( "bounce", "slow" ).removeClass(`pint${lastScore}`).addClass(`pint${scoreModulus}`);
     } else {
-      $("#pint").effect( "bounce", "slow" ).removeClass("pint4").addClass("pint5");
-      $("#pint").effect( "drop", 'fast' );
+      $( "#pint" ).effect( "bounce", "slow" ).removeClass("pint4").addClass("pint5");
+      $( "#pint" ).effect( "drop", 'fast' );
       setTimeout(function() {
-        $("#pint").removeClass("pint5").addClass("pint0");
-        $("#pint").effect( "slide", "fast" );
+        $( "#pint" ).removeClass("pint5").addClass("pint0");
+        $( "#pint" ).effect( "slide", "fast" );
       }, 1000);
     }
+    //play drink sfx
+    $( "#drink_sound" )[0].play();
+  } else {
+    $( "#feck_sound" )[0].play();
   }
 }
 
@@ -57,7 +82,7 @@ function submitFormAJAX(form, callbackSuccess) {
   // Make AJAX request
   $.ajax({
     type : "POST",
-    url : $( form ).attr("data-ajax"), // Get route from form attribute
+    url : $( form ).attr("action"), // Get route from form attribute
     contentType : 'application/json;charset=UTF-8',
     data : JSON.stringify(serialised),
     success : callbackSuccess
