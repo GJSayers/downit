@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<main>
+  <div class="leaderboard">
+    <ul>
+      {% for entry in leaderboard %}
+        <li>{{ entry.player }} : {{ entry.score }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</main>
+{% endblock %}
