@@ -53,6 +53,25 @@ def add_question_to_list(id):
     session["questions"] = tempList
 
 
+def get_question():
+    #Get the list of questions already asked
+    question_list = get_question_list()
+
+    #Get the first question
+    question = list(mongo.db.questions.aggregate([
+        #Excludes questions already asked
+        { "$match" : { "_id" : {"$nin" : question_list} }},
+        #Returns one random record
+        { "$sample" : { "size" : 1 } }
+    ]))
+    #We shouldn't run out of questions, but just in case
+    if question == []:
+        return redirect(url_for("finished"))
+    #Add the new question to the list
+    add_question_to_list(question[0]["_id"])
+
+    return question
+
 def get_score():
     """ Returns the player's current score """
     if "player_score" not in session:
@@ -92,28 +111,7 @@ def quiz():
         session['player'] = request.form['player_name']
         session['player_score'] = 0
 
-    #Get the list of questions already asked
-    question_list = get_question_list()
-
-    #If the player has answered a question
-    if 'answer' in request.form:
-        #check if they got the right answer
-        question = mongo.db.questions.find_one( {"_id" : ObjectId(question_list[-1])} )
-        if question['answer'] == int(request.form['answer']):
-            inc_score()
-
-    ##Get the next question
-    question = list(mongo.db.questions.aggregate([
-        #Excludes questions already asked
-        { "$match" : { "_id" : {"$nin" : question_list} }},
-        #Returns one random record
-        { "$sample" : { "size" : 1 } }
-    ]))
-    #We shouldn't run out of questions, but just in case
-    if question == []:
-        return redirect(url_for("finished"))
-    #Add the new question to the list
-    add_question_to_list(question[0]["_id"])
+    question = get_question()
 
     return render_template("quiz.html", question = question[0])
 
@@ -150,16 +148,31 @@ def AJAX_answer():
         "player_correct" : False,
         "player_score" : -1
     }
+    correct = False
 
     question_list = get_question_list()
     if "answer" in request.json:
         question = mongo.db.questions.find_one( {"_id" : ObjectId(question_list[-1])} )
+        #Did the player get the right answer?
+        if (question['answer'] == int(request.json['answer'])):
+            correct = True
+            inc_score()
         response['correct_answer'] = question['answer']
-        response['player_correct'] = (question['answer'] == int(request.json['answer']))
-        if response['player_correct']:
-            response['player_score'] = session['player_score'] + 1
-        else:
-            response['player_score'] = session['player_score']
+        response['player_correct'] = correct
+        response['player_score'] = session['player_score']
+
+    #Get the next question
+    question = get_question()[0]
+
+    response["next_question"] = {
+        "question" : question["question"],
+        "options" : [
+            question["options"][0],
+            question["options"][1],
+            question["options"][2],
+            question["options"][3]
+        ]
+    }
 
     return response
 
