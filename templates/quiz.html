@@ -5,22 +5,25 @@
   {# Gives client side code access to the current player score #}
   <input type="hidden" value="{{ session.player_score }}" id="player_score">
 
-  <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
-
-  <form id="quiz-form" class="question-card" action="{{ url_for('quiz') }}"
-    method="POST" data-ajax="{{ url_for('AJAX_answer') }}">
-    <p class="quiz-question">{{ question.question }}</p>
-    {% for option in question.options %}
-      <label class="quiz-option">
-        <input type="radio" name="answer" value="{{ loop.index - 1 }}">
-        <div>
-          {{- option -}}
-        </div>
-      </label>
-    {% endfor %}
-    {# Submits the form, should be hidden until AJAX returns #}
-    <input type="submit" value="Next Question">
-  </form>
+  <section id="quiz_score_section">
+    <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
+  </section>
+  <section id="quiz_question_section">
+    <form id="quiz-form" class="question-card" action="{{ url_for('quiz') }}"
+      method="POST" data-ajax="{{ url_for('AJAX_answer') }}">
+      <p class="quiz-question">{{ question.question }}</p>
+      {% for option in question.options %}
+        <label class="quiz-option">
+          <input type="radio" name="answer" value="{{ loop.index - 1 }}">
+          <div>
+            {{- option -}}
+          </div>
+        </label>
+      {% endfor %}
+      {# Submits the form, should be hidden until AJAX returns #}
+      <input type="submit" value="Next Question">
+    </form>
+  </section>
 </main>
 
 <audio id="drink_sound">
