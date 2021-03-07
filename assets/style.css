@@ -114,6 +114,12 @@ footer {
     width: 100%;
 }
 
+/* Timer */
+.timer {
+    color: #f8f8f8;
+    font-family: 'Ribeye', cursive;
+}
+
 /* Media Queries */
 
 @media only screen and (min-width: 1024px) {

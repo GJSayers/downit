@@ -168,3 +168,9 @@ To make a copy of the repository, which may be necessary if you wish to make cha
 Source for interesting facts about Ireland and St Patricks day;
 
 * https://www.irelandbeforeyoudie.com/50-shocking-facts-about-ireland-you-probably-didnt-know/
+
+Timer used from;
+* https://gist.github.com/noahub/c530eb73b31af677e3db9a80762acdf1
+
+Background image thanks to Nikola Jovanovic;
+* https://unsplash.com/photos/QGPmWrclELg?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink
