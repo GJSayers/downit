@@ -69,10 +69,18 @@ def inc_score():
     session["player_score"] += 1
 
 
+def clear_game_state():
+    """ Clears persistent game state variables """
+    session["player"] = ""
+    session["player_score"] = 0
+    session["questions"] = []
+
+
 @app.route("/")
 @app.route("/home")
 def home():
     """ Homepage route. """
+    clear_game_state()
     return render_template("home.html")
 
 
@@ -103,7 +111,7 @@ def quiz():
     ]))
     #We shouldn't run out of questions, but just in case
     if question == []:
-        return redirect("finished")
+        return redirect(url_for("finished"))
     #Add the new question to the list
     add_question_to_list(question[0]["_id"])
 
@@ -113,22 +121,25 @@ def quiz():
 @app.route("/finished")
 def finished():
     """ Called when the game ends. """
-    #The game has finished, so clear the asked questions list
-    if "questions" in session:
-        session["questions"] = []
+    #Store the player's score
+    mongo.db.scores.insert_one({
+        "player" : session["player"],
+        "score" : session["player_score"]
+    })
 
-    #TODO: GAME COMPLETION LOGIC HERE
-
-    return "Game Over"
+    return redirect(url_for("leaderboard"))
 
 
 @app.route("/leaderboard")
 def leaderboard():
     """ Leaderboard route """
+    #Gets the top scores sorted by date added
+    leaderboard = mongo.db.scores.find().sort([
+        ("score", -1),
+        ("_id", 1)
+    ]).limit(10)
 
-    #TODO: DISPLAY LEADERBOARD
-
-    return "Leaderboard here"
+    return render_template("leaderboard.html", leaderboard=leaderboard)
 
 
 @app.route("/AJAX_answer", methods=["POST"])
