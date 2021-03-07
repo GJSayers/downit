@@ -29,6 +29,12 @@ $( "#next_question_btn" ).click(function(event) {
   $( "#quiz-form input[name='answer']" ).prop('disabled', false);
   $( "#quiz-form input[name='answer']" ).prop('checked', false);
 
+  //Reset button highlighting
+  $( ".quiz-option" ).each(function(index) {
+    $( this ).removeClass("wrong").removeClass("correct");
+  });
+
+  //Hide the next question button
   $( "#next_question_btn" ).addClass("hide");
 });
 
@@ -41,13 +47,14 @@ function checkAnswerCallback(response) {
 
   // Show the next question button
   $( "#next_question_btn" ).removeClass("hide");
-  /*
-  TODO: Highlight correct/wrong answers
-        Show next question button
-  response.correct_answer = the 0-based index of the correct answer
-    (should map to radio button value)
-  response.player_correct = true/false whether the player selected the correct answer
-  */
+
+  $( ".quiz-option" ).each(function(index) {
+    if (index == response.correct_answer) {
+      $( this ).addClass("correct");
+    } else {
+      $( this ).addClass("wrong");
+    }
+  });
 
   if (response.player_correct) {
     // Update pint glass

@@ -64,9 +64,11 @@ def get_question():
         #Returns one random record
         { "$sample" : { "size" : 1 } }
     ]))
-    #We shouldn't run out of questions, but just in case
+
+    #If we run out of questions, end the quiz
     if question == []:
         return redirect(url_for("finished"))
+
     #Add the new question to the list
     add_question_to_list(question[0]["_id"])
 
@@ -119,11 +121,16 @@ def quiz():
 @app.route("/finished")
 def finished():
     """ Called when the game ends. """
-    #Store the player's score
-    mongo.db.scores.insert_one({
-        "player" : session["player"],
-        "score" : session["player_score"]
-    })
+
+    if 'player' in session:
+        #Store the player's score
+        mongo.db.scores.insert_one({
+            "player" : session["player"],
+            "score" : session["player_score"]
+        })
+
+    #clear session
+    clear_game_state()
 
     return redirect(url_for("leaderboard"))
 
