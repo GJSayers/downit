@@ -145,13 +145,21 @@ def leaderboard():
 @app.route("/AJAX_answer", methods=["POST"])
 def AJAX_answer():
     """ Accepts an answer as an ajax request and returns if it is correct. """
-    responce = {"correct_answer" : -1, "player_correct" : False}
+    responce = {
+        "correct_answer" : -1,
+        "player_correct" : False,
+        "player_score" : -1
+    }
 
     question_list = get_question_list()
     if "answer" in request.json:
         question = mongo.db.questions.find_one( {"_id" : ObjectId(question_list[-1])} )
         responce['correct_answer'] = question['answer']
         responce['player_correct'] = (question['answer'] == int(request.json['answer']))
+        if responce['player_correct']:
+            responce['player_score'] = session['player_score'] + 1
+        else:
+            responce['player_score'] = session['player_score']
 
     return responce
 
