@@ -10,8 +10,8 @@ body {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  overflow-y: hidden
+  /*min-height: 100vh;
+  overflow-y: hidden*/
 }
 
 header h1 {
@@ -79,7 +79,7 @@ footer {
 }
 
 
-/* Temp CSS Form Animating the Pint */
+/* CSS Form Animating the Pint */
 
 #pint {
     width: 640px;
@@ -106,6 +106,13 @@ footer {
     background-image: url("../assets/pint5.png");
 }
 
+/* CSS Increasing the Pint Counter */
+#pint-counter {
+    width: 3vw;
+}
+.add-pint img {
+    width: 100%;
+}
 
 /* Media Queries */
 
