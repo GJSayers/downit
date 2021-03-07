@@ -8,7 +8,7 @@ body, html {
 
 body {
   background: url("../images/quiz-background.jpg") no-repeat;
-  background-position:center;
+  background-position: center;
   background-size: cover;
   text-align: center;
   position: relative;
@@ -111,20 +111,62 @@ main {
 /*
  * Quiz
  */
+#pint {
+  height: 25vh;
+  margin-top: 10px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.pint0 {
+  background-image: url("../images/pint0.png");
+}
+.pint1 {
+  background-image: url("../images/pint1.png");
+}
+.pint2 {
+  background-image: url("../images/pint2.png");
+}
+.pint3 {
+  background-image: url("../images/pint3.png");
+}
+.pint4 {
+  background-image: url("../images/pint4.png");
+}
+.pint5 {
+  background-image: url("../images/pint5.png");
+}
+#quiz-form {}
+.quiz-question {
+  margin-left: 50px;
+  margin-right: 50px;
+  border-radius: 50px;
+  /* keeps it consistent with color scheme */
+  background-color: #009A49;
+  padding: 20px;
+}
+/* Ensures radiobuttons remain within the label */
+.quiz-option {
+  position: relative;
+  display: block;
+}
 /* Default styling for quiz options */
 .quiz-option div {
-  display: inline-block;
+  /* centers text vertically */
+  display: flex;          /* We need flex for align-items to work */
+  align-items: center;
+  justify-content: center;
 
   width: 75vw;
-  height: 50px;
+  min-height: 50px;
   background: #FF7900;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 15px auto;
+  margin: 10px auto;
   border-radius: 5px;
   font-family: 'Roboto Mono', monospace;
   font-size: 15px;
   letter-spacing: 0.13em;
-
   background-color: orange;
 }
 /* Hides the radio buttons while allowing them to still function */
@@ -133,7 +175,9 @@ main {
   opacity: 0;
 }
 /* Highlights the current selected option */
-.quiz-option input[type="radio"]:checked + div {
+/* Highlights the current hovered item *if* it's *not* disabled */
+.quiz-option input[type="radio"]:checked + div,
+.quiz-option:hover input[type="radio"]:not(:disabled) + div {
   background-color: blue;
 }
 /* Indicates the question is wrong if it's an incorrect option AND selected */
@@ -141,8 +185,17 @@ main {
   background-color: red;
 }
 /* Indicates the question is right if it's a correct option AND selected */
-.quiz-option.correct input[type="radio"]:checked + div {
+.quiz-option.correct div {
   background-color: green;
+}
+/*
+ * Leaderboard page
+ */
+.leaderboard ul,
+.leaderboard li {
+  list-style: none;
+  padding: 0;
+  background-color: rgba(0, 154, 73, 0.25);
 }
 
 /*

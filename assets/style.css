@@ -11,6 +11,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-y: hidden
 }
 
 header h1 {
@@ -99,4 +100,32 @@ footer {
   bottom: 0;
   width: 100%;
   height: 3rem;
+}
+
+
+/* Temp CSS Form Animating the Pint */
+
+#pint {
+    width: 640px;
+    height: 700px;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+.pint0 {
+    background-image: url("../images/pint0.png");
+}
+.pint1 {
+    background-image: url("../images/pint1.png");
+}
+.pint2 {
+    background-image: url("../images/pint2.png");
+}
+.pint3 {
+    background-image: url("../images/pint3.png");
+}
+.pint4 {
+    background-image: url("../images/pint4.png");
+}
+.pint5 {
+    background-image: url("../images/pint5.png");
 }

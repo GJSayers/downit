@@ -2,18 +2,35 @@
 
 {% block content %}
 <main>
-  <form id="quiz-form" class="question-card"> {#action="/AJAX_answer" method="POST">#}
+  {# Gives client side code access to the current player score #}
+  <input type="hidden" value="{{ session.player_score }}" id="player_score">
+
+  <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
+
+  <form id="quiz-form" class="question-card" action="{{ url_for('quiz') }}"
+    method="POST" data-ajax="{{ url_for('AJAX_answer') }}">
     <p class="quiz-question">{{ question.question }}</p>
     {% for option in question.options %}
-      {#<div class="quiz-option">#}
-        <label class="quiz-option">
-          <input type="radio" name="answer" value="{{ loop.index - 1 }}">
-          <div>
-            {{- option -}}
-          </div>
-        </label>
-      {#</div>#}
+      <label class="quiz-option">
+        <input type="radio" name="answer" value="{{ loop.index - 1 }}">
+        <div>
+          {{- option -}}
+        </div>
+      </label>
     {% endfor %}
+    {# Submits the form, should be hidden until AJAX returns #}
+    <input type="submit" value="Next Question">
   </form>
 </main>
+
+<audio id="drink_sound">
+  <source src="{{ url_for('static' filename='sound/drink.mp3') }}"/>
+</audio>
+<audio id="feck_sound">
+  <source src="{{ url_for('static' filename='sound/feck.mp3') }}"/>
+</audio>
+{% endblock %}
+
+{% block dependencies %}
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}
