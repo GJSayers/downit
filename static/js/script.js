@@ -29,18 +29,16 @@ function checkAnswerCallback(responce) {
   let scoreModulus = score % 5;
   let lastScore = scoreModulus - 1;
 
-  function refill() {
-    $("#pint").removeClass("pint5").addClass("pint0");
-    $("#pint").effect( "slide", "fast" );
-  }
-
   if (responce.player_correct) {
     if (scoreModulus > 0) {
       $("#pint").effect( "bounce", "slow" ).removeClass(`pint${lastScore}`).addClass(`pint${scoreModulus}`);
     } else {
       $("#pint").effect( "bounce", "slow" ).removeClass("pint4").addClass("pint5");
       $("#pint").effect( "drop", 'fast' );
-      setTimeout(refill, 1000);
+      setTimeout(function() {
+        $("#pint").removeClass("pint5").addClass("pint0");
+        $("#pint").effect( "slide", "fast" );
+      }, 1000);
     }
   }
 }
