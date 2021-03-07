@@ -2,7 +2,7 @@ let score;
 
 $("button").click(function(){
 
-    score = document.getElementById("numberInput").value; 
+    score = document.getElementById("numberInput").value;
 
     let scoreAsNumber = parseInt(score);
 
@@ -22,7 +22,7 @@ $("button").click(function(){
     }
 
     if (scoreModulus === 1) {
-        $("div").effect( "bounce", "slow" ).removeClass("pint0").addClass("pint1",);
+        $("div").effect( "bounce", "slow" ).removeClass("pint0").addClass("pint1");
     } else if (scoreModulus === 2) {
         $("div").effect( "bounce", "slow" ).removeClass("pint1").addClass("pint2");
     } else if (scoreModulus === 3) {
@@ -34,5 +34,5 @@ $("button").click(function(){
         $("div").effect( "drop", 'fast' );
         setTimeout(refill, 1000);
     }
-      
+
 });
