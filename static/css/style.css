@@ -151,7 +151,9 @@ main {
   opacity: 0;
 }
 /* Highlights the current selected option */
-.quiz-option input[type="radio"]:checked + div {
+/* Highlights the current hovered item *if* it's *not* disabled */
+.quiz-option input[type="radio"]:checked + div,
+.quiz-option:hover input[type="radio"]:not(:disabled) + div {
   background-color: blue;
 }
 /* Indicates the question is wrong if it's an incorrect option AND selected */
