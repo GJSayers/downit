@@ -22,6 +22,13 @@
     <input type="submit" value="Next Question">
   </form>
 </main>
+
+<audio id="drink_sound">
+  <source src="{{ url_for('static' filename='sound/drink.mp3') }}"/>
+</audio>
+<audio id="feck_sound">
+  <source src="{{ url_for('static' filename='sound/feck.mp3') }}"/>
+</audio>
 {% endblock %}
 
 {% block dependencies %}
