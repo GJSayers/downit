@@ -30,16 +30,21 @@ function checkAnswerCallback(response) {
   let lastScore = scoreModulus - 1;
 
   if (response.player_correct) {
+    // Update pint glass
     if (scoreModulus > 0) {
-      $("#pint").effect( "bounce", "slow" ).removeClass(`pint${lastScore}`).addClass(`pint${scoreModulus}`);
+      $( "#pint" ).effect( "bounce", "slow" ).removeClass(`pint${lastScore}`).addClass(`pint${scoreModulus}`);
     } else {
-      $("#pint").effect( "bounce", "slow" ).removeClass("pint4").addClass("pint5");
-      $("#pint").effect( "drop", 'fast' );
+      $( "#pint" ).effect( "bounce", "slow" ).removeClass("pint4").addClass("pint5");
+      $( "#pint" ).effect( "drop", 'fast' );
       setTimeout(function() {
-        $("#pint").removeClass("pint5").addClass("pint0");
-        $("#pint").effect( "slide", "fast" );
+        $( "#pint" ).removeClass("pint5").addClass("pint0");
+        $( "#pint" ).effect( "slide", "fast" );
       }, 1000);
     }
+    //play drink sfx
+    $( "#drink_sound" )[0].play();
+  } else {
+    $( "#feck_sound" )[0].play();
   }
 }
 
