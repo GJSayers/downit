@@ -9,8 +9,7 @@
     <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
   </section>
   <section id="quiz_question_section">
-    <form id="quiz-form" class="question-card" action="{{ url_for('quiz') }}"
-      method="POST" data-ajax="{{ url_for('AJAX_answer') }}">
+    <form id="quiz-form" class="question-card" action="{{ url_for('AJAX_answer') }}" method="POST">
       <p class="quiz-question">{{ question.question }}</p>
       {% for option in question.options %}
         <label class="quiz-option">
@@ -21,7 +20,7 @@
         </label>
       {% endfor %}
       {# Submits the form, should be hidden until AJAX returns #}
-      <input type="submit" value="Next Question">
+      <button id="next_question_btn" class="hide">Next Question</button>      
     </form>
   </section>
 </main>

@@ -38,6 +38,9 @@ main {
   display: block;
 }
 
+.hide {
+  display: none;
+}
 /*
  * Home page styles
  */

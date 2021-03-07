@@ -1,3 +1,5 @@
+var question;
+
 $( document ).ready(function () {});
 
 // Clears the player name field on click
@@ -7,16 +9,38 @@ $( "#quiz-player-form .player-name" ).click(function() {
 
 // Triggered when answer is submitted
 $( "#quiz-form input[name='answer']" ).change(function(event) {
-  console.log( `Selected option: ${$( this ).val()}` );
   //Player has selected so disable the other options
   $( "#quiz-form input[name='answer']:not(:checked)" ).prop('disabled', true);
   //Submit the answer to the server
   submitFormAJAX($( "#quiz-form" )[0], checkAnswerCallback);
 });
 
+// Shows the next quiz question
+$( "#next_question_btn" ).click(function(event) {
+  event.preventDefault();
+
+  //Fill out new question text
+  $( ".quiz-question" ).text(question.question);
+  $( ".quiz-option" ).each(function(index) {
+    $( this ).children("div").text(question.options[index]);
+  });
+
+  //Reset radio radiobuttons
+  $( "#quiz-form input[name='answer']" ).prop('disabled', false);
+  $( "#quiz-form input[name='answer']" ).prop('checked', false);
+
+  $( "#next_question_btn" ).addClass("hide");
+});
+
 //AJAX answer check callback
 function checkAnswerCallback(response) {
-  console.log(response);
+  let score = response.player_score;
+  let scoreModulus = score % 5;
+  let lastScore = scoreModulus - 1;
+  question = response.next_question;
+
+  // Show the next question button
+  $( "#next_question_btn" ).removeClass("hide");
   /*
   TODO: Highlight correct/wrong answers
         Show next question button
@@ -24,10 +48,6 @@ function checkAnswerCallback(response) {
     (should map to radio button value)
   response.player_correct = true/false whether the player selected the correct answer
   */
-
-  let score = response.player_score;
-  let scoreModulus = score % 5;
-  let lastScore = scoreModulus - 1;
 
   if (response.player_correct) {
     // Update pint glass
@@ -62,7 +82,7 @@ function submitFormAJAX(form, callbackSuccess) {
   // Make AJAX request
   $.ajax({
     type : "POST",
-    url : $( form ).attr("data-ajax"), // Get route from form attribute
+    url : $( form ).attr("action"), // Get route from form attribute
     contentType : 'application/json;charset=UTF-8',
     data : JSON.stringify(serialised),
     success : callbackSuccess
