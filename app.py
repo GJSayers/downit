@@ -96,6 +96,7 @@ def clear_game_state():
     """ Clears persistent game state variables """
     session["player"] = ""
     session["player_score"] = 0
+    session["game_start"] = 0
     session["questions"] = []
 
 
