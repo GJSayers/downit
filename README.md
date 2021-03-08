@@ -67,7 +67,9 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
 ### Design choices 
 ---
 * Layout & Wireframes
-  *
+  *Wireframe created on Figma
+  ![Wireframe](documentation/figma.jpg)
+  
 * Colours
   * A pallet based on colours associated with both Ireland and Guinness to give a St. Patrick’s Day vibe to the players! (key colours:  Green, orange, white, black) 
   
