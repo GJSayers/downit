@@ -1,4 +1,5 @@
 import os
+import time
 from functools import wraps
 from flask import ( Flask, flash, render_template, redirect,
                     request, session, url_for, abort)
@@ -106,14 +107,23 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/quiz", methods=["POST"])
-def quiz():
-    """ Quiz page route. """
-    #If this is the start of the game, add player name to session
+@app.route("/startgame", methods=["POST"])
+def startgame():
+    clear_game_state()
+
     if 'player_name' in request.form:
         session['player'] = request.form['player_name']
         session['player_score'] = 0
+        session["game_start"] = time.time()
+    else:
+        return abort(400)
 
+    return redirect(url_for("quiz"))
+
+
+@app.route("/quiz")
+def quiz():
+    """ Quiz page route. """
     question = get_question()
 
     return render_template("quiz.html", question = question[0])
@@ -156,6 +166,10 @@ def gameover():
 @app.route("/AJAX_answer", methods=["POST"])
 def AJAX_answer():
     """ Accepts an answer as an ajax request and returns if it is correct. """
+    #Check that the game time hasn't elapsed
+    if time.time() - session["time_stamp"] > 60:
+        redirect(url_for("gameover"))
+
     response = {
         "correct_answer" : -1,
         "player_correct" : False,

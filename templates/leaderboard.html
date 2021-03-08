@@ -30,7 +30,7 @@
   </div>
   {% if player %}
     {{ player }}
-    <form id="quiz-player-form" action="{{ url_for('quiz') }}" method="POST">
+    <form id="quiz-player-form" action="{{ url_for('startgame') }}" method="POST">
       <input type="hidden" name="player_name" value="{{ player.name }}">
       <input class="restart-button btn" type="submit" value="Get another round in!">
     </form>
