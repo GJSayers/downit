@@ -125,6 +125,7 @@ main {
  */
 #quiz_score_section {
   position: relative;
+  padding-top: 10vh;
   height: 25vh;
 }
 #pint_counter {
@@ -139,8 +140,7 @@ main {
   width: 100%;
 }
 #pint {
-  height: 100%;/*25vh;*/
-  margin-top: 10px;
+  height: 100%;
   background-position: bottom;
   background-repeat: no-repeat;
   background-position: center;
@@ -169,11 +169,10 @@ main {
   bottom: 0;
   right: 5vw;
   color: black;
-
   padding: 15px;
-
   background-color: white;
   border-radius: 50%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
 }
 .quiz-question {
   margin-left: 5vw;
@@ -190,6 +189,7 @@ main {
 }
 /* Default styling for quiz options */
 .quiz-option div {
+  margin: 5px auto;
   background-color: #FF7900;
 }
 /* Hides the radio buttons while allowing them to still function */
@@ -215,6 +215,7 @@ main {
 #next_question_btn {
   color: #f8f8f8;
   background-color: #009a49;
+  margin: 5px auto;
 }
 /*
  * Sound toggle
