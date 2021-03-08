@@ -127,6 +127,16 @@ main {
   position: relative;
   height: 25vh;
 }
+#pint_counter {
+  position: absolute;
+  top: 0;
+  left: 5vw;
+  width: 3vw;
+}
+.add-pint {}
+.add-pint img {
+  width: 100%;
+}
 #pint {
   height: 100%;/*25vh;*/
   margin-top: 10px;

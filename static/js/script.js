@@ -94,6 +94,12 @@ function checkAnswerCallback(response) {
         $( "#pint" ).removeClass("pint5").addClass("pint0");
         $( "#pint" ).effect( "slide", "fast" );
       }, 1000);
+      // A pint has been finished, add a score
+      $( "#pint_counter" ).append(`
+        <div class="add-pint">
+          <img src="/static/images/pint-counter-icon.svg">
+        </div>
+      `);
     }
     //play drink sfx
     $( "#drink_sound" )[0].play();
