@@ -14,9 +14,9 @@
   <div class="welcome-text">
     {% if player %}
     <p>
-      Looks like you've had enough {{ player.name }}. You downed over
-      {{ (player.score / 5)|int }} pints. That puts you in {{ player.place }}
-      overall.
+      Looks like you've had enough <span class="player-name">{{ player.name }}</span>.
+      You downed over {{ (player.score / 5)|int }} pints. That puts you in
+      {{ player.place }} overall.
     </p>
     <p>
       Take a look where you are on the leaderboard on the way out of my pub...

@@ -225,6 +225,9 @@ main {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 1vh 0;
 }
+.welcome-text span.player-name {
+  font-weight: bold;
+}
 .restart-button {
   text-decoration: none;
   color: #f8f8f8;
