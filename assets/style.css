@@ -125,3 +125,50 @@ background: #FF7900;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 }
+
+
+/*sound-toggle styling*/
+
+.sound-toggle {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.sound-toggle input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.sound-toggle label {
+  background-color: #009A49;
+  color: #f8f8f8;
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  padding: 8px 16px;
+  margin-right: -1px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease-in-out;
+}
+
+.sound-toggle label:hover {
+  cursor: pointer;
+}
+
+.sound-toggle input:checked + label {
+  background-color: #FF7900;
+}
+
+.sound-toggle label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.sound-toggle label:last-of-type {
+  border-radius: 0 4px 4px 0;
+}

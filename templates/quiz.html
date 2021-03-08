@@ -11,6 +11,14 @@
 
 <main>
   <section id="quiz_score_section">
+    <form>
+      <div class="sound-toggle">
+        <input type="radio" id="sound-on" name="sound-on" checked />
+        <label for="radio-one"><i class="fas fa-volume-up"></i></label>
+        <input type="radio" id="sound-off" name="sound-off"/>
+        <label for="radio-two"><i class="fas fa-volume-mute"></i></label>
+      </div>
+    </form>
     <div id="pint_counter"></div>
     <div id="player_name">{{ session.player }}</div>
     <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
