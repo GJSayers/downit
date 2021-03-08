@@ -30,8 +30,9 @@ function startTimer(duration, display) {
   }, 1000);
 }
 
-$( "#sound_toggle" ).change(function() {
-  console.log("sound toggled");
+$( "#sound-toggle" ).change(function() {
+  event.preventDefault();
+  submitFormAJAX( $( "#sound_form" )[0], null );
 });
 
 // Clears the player name field on click

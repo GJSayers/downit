@@ -12,13 +12,11 @@
 
 <main>
   <section id="quiz_score_section">
-    <form class="sound-toggle">
-      {#<input id="sound-on" type="radio" name="sound-toggle" checked />
-      <label for="sound-on"><i class="fas fa-volume-up"></i></label>
-      <input id="sound-off" type="radio" name="sound-toggle"/>
-      <label for="sound-off"><i class="fas fa-volume-mute"></i></label>#}
-
-      <input type="checkbox" name="sound-toggle" id="sound-toggle" checked>
+    <form id="sound_form" class="sound-toggle" action="{{ url_for('AJAX_sound') }}" method="POST">
+      <input type="checkbox" name="sound-toggle" id="sound-toggle"
+        {% if session.sound %}
+          checked
+        {% endif %}>
       <label for="sound-toggle" id="sound-on"><i class="fas fa-volume-up"></i></label>
       <label for="sound-toggle" id="sound-off"><i class="fas fa-volume-mute"></i></label>
     </form>

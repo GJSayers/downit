@@ -122,6 +122,7 @@ def startgame():
         session['player'] = request.form['player_name']
         session['player_score'] = 0
         session["game_start"] = time.time()
+
     else:
         return abort(400)
 
@@ -131,9 +132,14 @@ def startgame():
 @app.route("/quiz")
 def quiz():
     """ Quiz page route. """
+    #Calculate game time remaining
     time_left = game_time() - (time.time() - session["game_start"])
+    #If game time has expired, force gameover
     if time_left <= 0:
         redirect(url_for("gameover"))
+
+    if 'sound' not in session:
+        session['sound'] = True
 
     question = get_question()
 
@@ -216,6 +222,17 @@ def AJAX_answer():
     }
 
     return response
+
+
+@app.route("/AJAX_sound", methods=["POST"])
+def AJAX_sound():
+    """ Toggles session sound on/off """
+    if 'sound' not in session:
+        session['sound'] = True
+
+    session['sound'] = ('sound-toggle' in request.json)
+
+    return {"sound-state" : session['sound']}
 
 
 #
