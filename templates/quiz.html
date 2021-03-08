@@ -14,13 +14,13 @@
       {% for option in question.options %}
         <label class="quiz-option">
           <input type="radio" name="answer" value="{{ loop.index - 1 }}">
-          <div>
+          <div class="btn">
             {{- option -}}
           </div>
         </label>
       {% endfor %}
       {# Submits the form, should be hidden until AJAX returns #}
-      <button id="next_question_btn" class="hide">Next Question</button>      
+      <button id="next_question_btn" class="btn hide">Next Question</button>
     </form>
   </section>
 </main>
@@ -33,6 +33,6 @@
 </audio>
 {% endblock %}
 
-{% block dependencies %}
+{% block scripts %}
   <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}
