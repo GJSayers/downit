@@ -154,9 +154,9 @@ def gameover():
                 "score" : session["player_score"]
             })
             #Where did the player place in the database?
-            position = mongo.db.scores.find({
+            position = mongo.db.scores.count_documents({
                 "score" : {"$gte":session["player_score"]}
-            }).count()
+            })
             player = {
                 "name" : session['player'],
                 "score" : session['player_score'],
