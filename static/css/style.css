@@ -127,6 +127,24 @@ main {
   position: relative;
   height: 25vh;
 }
+#pint_counter {
+  position: absolute;
+  top: 0;
+  left: 5vw;
+  width: 3vw;
+}
+.add-pint {}
+.add-pint img {
+  width: 100%;
+}
+#player_name {
+  position: absolute;
+  top: 2vh;
+  right: 5vh;
+  padding: 5px 10px;
+  background-color: #009a49;
+  border-radius: 20px;
+}
 #pint {
   height: 100%;/*25vh;*/
   margin-top: 10px;
@@ -214,6 +232,9 @@ main {
   font-size: 52px;
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 1vh 0;
+}
+.welcome-text span.player-name {
+  font-weight: bold;
 }
 .restart-button {
   text-decoration: none;
