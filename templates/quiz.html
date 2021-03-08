@@ -1,13 +1,58 @@
 {% extends "base.html" %}
 
+
 {% block content %}
-  <div>
-    {% for question in questions %}
-      <p>{{ question.question }}</P>
-      {% for option in question.options %}
-        <p>{{ loop.index }} - {{ option }}</p>
+
+{# Gives client side code access to the current player score #}
+<input type="hidden" value="{{ session.player_score }}" id="player_score">
+{# Give client side code access to the gameover page url #}
+<input type="hidden" value="{{ url_for('gameover') }}" id="gameover">
+{# Sets timer from server timestamp so player can't cheat by refreshing the page #}
+<input type="hidden" value="{{ time_left }}" id="startTime">
+
+<main>
+  <section id="quiz_score_section">
+    <form class="sound-toggle">
+      <input type="checkbox" name="sound-toggle" id="sound-toggle" checked>
+      <label for="sound-toggle" id="sound-on"><i class="fas fa-volume-up"></i></label>
+      <label for="sound-toggle" id="sound-off"><i class="fas fa-volume-mute"></i></label>
+    </form>
+    <div id="pint_counter">
+      {% for i in range((session.player_score/5)|int) %}
+      <div class="add-pint">
+        <img src="/static/images/pint-counter-icon.svg">
+      </div>
       {% endfor %}
-      <p>Answer: {{ question.answer + 1 }}</p>
-    {% endfor %}
-  </div>
+    </div>
+    {#<div id="player_name">{{ session.player }}</div>#}
+    <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
+    <h1 class="timer">{{ time_left|int }}</h1>
+  </section>
+  <section id="quiz_question_section">
+    <form id="quiz_form" class="question-card" action="{{ url_for('AJAX_answer') }}" method="POST">
+      <p class="quiz-question">{{ question.question }}</p>
+      {% for option in question.options %}
+        <label class="quiz-option">
+          <input type="radio" name="answer" value="{{ loop.index - 1 }}">
+          <div class="btn">
+            {{- option -}}
+          </div>
+        </label>
+      {% endfor %}
+      {# Submits the form, should be hidden until AJAX returns #}
+      <button id="next_question_btn" class="btn hide">Next Question</button>
+    </form>
+  </section>
+</main>
+
+<audio id="drink_sound">
+  <source src="{{ url_for('static', filename='sound/drink.mp3') }}"/>
+</audio>
+<audio id="feck_sound">
+  <source src="{{ url_for('static', filename='sound/feck.mp3') }}"/>
+</audio>
+{% endblock %}
+
+{% block scripts %}
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 {% endblock %}

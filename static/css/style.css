@@ -8,7 +8,7 @@ body, html {
 
 body {
   background: url("../images/quiz-background.jpg") no-repeat;
-  background-position:center;
+  background-position: center;
   background-size: cover;
   text-align: center;
   position: relative;
@@ -34,6 +34,28 @@ footer {
   height: 3rem;
 }
 
+main {
+  display: block;
+}
+
+.hide {
+  display: none !important;
+}
+.btn {
+  /* centers text vertically */
+  display: flex;          /* We need flex for align-items to work */
+  align-items: center;
+  justify-content: center;
+
+  width: 75vw;
+  min-height: 50px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 10px auto;
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  letter-spacing: 0.13em;
+}
 /*
  * Home page styles
  */
@@ -46,22 +68,42 @@ footer {
 }
 
 .welcome-text {
-  background-color: rgba(0, 154, 73, 0.9);
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 1);
   width: 75vw;
   border-radius: 5px;
   padding: 10px;
   margin: 10px auto;
+  /* Based on example here: https://lea.verou.me/2012/04/background-attachment-local/
+     prevents the welcome text getting too large, and shows scroll bars and shadows
+     if there is overflow*/
+  max-height: 50vh;
+  overflow-y: auto;
+  background:
+    /* Shadow covers */
+    linear-gradient(#009a49 30%, rgba(0, 154, 73, 0)),
+    linear-gradient(rgba(0, 154, 73, 0), #009a49 70%) 0 100%,
+    /* Shadows*/
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)) 0 100%;
+  background:
+    /* Shadow covers */
+    linear-gradient(#009a49 30%, rgba(0, 154, 73, 0)),
+    linear-gradient(rgba(0, 154, 73, 0), #009a49 70%) 0 100%,
+    /* Shadows*/
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)) 0 100%;
 
-/*  max-height: 50vh;
-  overflow-y: scroll;*/
+  background-repeat: no-repeat;
+  background-color: rgba(0, 154, 73, 0.9);
+  background-size: 100% 50px, 100% 50px, 100% 20px, 100% 20px;
+  background-attachment: local, local, scroll, scroll;
 }
 
-#quiz-player-form .player-name {
+#quiz_player_form .player-name {
   display: block;
   width: 275px;
   height: 50px;
-  background: #f9f9f9;
+  background-color: #f9f9f9;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 20px auto;
   border-radius: 5px;
@@ -71,21 +113,247 @@ footer {
   letter-spacing: 0.4em;
 }
 
-#quiz-player-form input[type = 'submit'] {
-  display: block;
+#quiz_player_form input[type = 'submit'] {
   width: 275px;
   height: 50px;
-  background: #FF7900;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 15px auto;
-  border-radius: 5px;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 22px;
-  letter-spacing: 0.13em;
+
+  background-color: #FF7900;
 }
 
-@media only screen and (max-width: 400px) {
+/*
+ * Quiz
+ */
+#quiz_score_section {
+  position: relative;
+  height: 25vh;
+}
+#pint_counter {
+  position: absolute;
+  top: 0;
+  left: 5vw;
+  width: 3vw;
+  min-width: 35px;
+}
+.add-pint {}
+.add-pint img {
+  width: 100%;
+}
+#pint {
+  height: 100%;/*25vh;*/
+  margin-top: 10px;
+  background-position: bottom;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.pint0 {
+  background-image: url("../images/pint0.png");
+}
+.pint1 {
+  background-image: url("../images/pint1.png");
+}
+.pint2 {
+  background-image: url("../images/pint2.png");
+}
+.pint3 {
+  background-image: url("../images/pint3.png");
+}
+.pint4 {
+  background-image: url("../images/pint4.png");
+}
+.pint5 {
+  background-image: url("../images/pint5.png");
+}
+.timer {
+  position: absolute;
+  bottom: 0;
+  right: 5vw;
+  color: black;
+
+  padding: 15px;
+
+  background-color: white;
+  border-radius: 50%;
+}
+.quiz-question {
+  margin-left: 5vw;
+  margin-right: 5vw;
+  border-radius: 50px;
+  /* keeps it consistent with color scheme */
+  background-color: #009A49;
+  padding: 20px;
+}
+/* Ensures radiobuttons remain within the label */
+.quiz-option {
+  position: relative;
+  display: block;
+}
+/* Default styling for quiz options */
+.quiz-option div {
+  background-color: #FF7900;
+}
+/* Hides the radio buttons while allowing them to still function */
+.quiz-option > input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+}
+/* Highlights the current selected option */
+/* Highlights the current hovered item *if* it's *not* disabled */
+.quiz-option > input[type="radio"]:checked + div,
+.quiz-option:not(.correct) > input[type="radio"]:checked + div,
+.quiz-option:not(.wrong):not(.correct):hover > input[type="radio"]:not(:disabled) + div {
+  background-color: blue;
+}
+/* Indicates the question is right if it's a correct option AND selected */
+.quiz-option.correct > input[type="radio"] + div {
+  background-color: green;
+}
+/* Indicates the question is wrong if it's an incorrect option AND selected */
+.quiz-option.wrong > input[type="radio"]:checked + div {
+  background-color: red;
+}
+#next_question_btn {
+  color: #f8f8f8;
+  background-color: #009a49;
+}
+/*
+ * Sound toggle
+ */
+#player_name {
+  position: absolute;
+  top: 2vh;
+  right: 5vw;
+  padding: 5px 10px;
+  background-color: #009a49;
+  border-radius: 20px;
+}
+.sound-toggle {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  top: 2vh;
+  right: 5vw;
+}
+
+.sound-toggle input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.sound-toggle label {
+  background-color: #666666;
+  color: #AAAAAA;
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  padding: 8px 16px;
+  margin-right: -1px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease-in-out;
+}
+
+.sound-toggle label:hover {
+  cursor: pointer;
+}
+
+.sound-toggle input:checked ~ label#sound-on {
+  color: #f8f8f8;
+  background-color: #FF7900;
+}
+.sound-toggle input:not(:checked) ~ label#sound-off {
+  color: #f8f8f8;
+  background-color: #FF7900;
+}
+
+.sound-toggle label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.sound-toggle label:last-of-type {
+  border-radius: 0 4px 4px 0;
+}
+/*
+ * Leaderboard page
+ */
+.leaderboard-title {
+  color: #f8f8f8;
+  font-family: 'Ribeye', cursive;
+  font-size: 52px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 1vh 0;
+}
+.welcome-text span.player-name {
+  font-weight: bold;
+}
+.restart-button {
+  text-decoration: none;
+  color: #f8f8f8;
+  background-color: #FF7900;
+}
+.leaderboard {
+  box-sizing: border-box;
+  /*background: #C4C4C4;*/
+  /*position: sticky;*/
+  font-family: 'Roboto Mono', monospace;
+  width: 347px;
+  /*height: 155px;*/
+  border: 15px solid #FF7900;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  width: 80vw;
+  padding: 8px;
+  margin: 15px auto 50px auto;
+  max-width: 700px;
+/*  max-height: 70vh;*/
+  /* Makes it look a bit like a black board */
+  color: white;
+  background-color: black;
+  font-family: 'East Sea Dokdo', cursive;
+  font-size: 25px;
+}
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.leaderboard-table thead {
+  border-bottom: 2px solid white;
+}
+.leaderboard-table .highlight {
+  background-color: #009a49;
+}
+.social-share {
+  text-align: center;
+  font-size: xx-large;
+  color: #FF7900;
+}
+.social-share a {
+  text-decoration: none;
+}
+.fa-instagram-square {
+  color: #FF7900;
+}
+.fa-twitter-square {
+  color:  #FF7900;
+}
+.fab:hover {
+  color:white;
+}
+
+/*
+ * Media Queries
+ */
+@media only screen and (max-width: 500px) {
   footer {
     display: none;
+  }
+  .sound-toggle label {
+    font-size: 15px;
+    text-align: center;
+    padding: 4px 8px;
   }
 }
