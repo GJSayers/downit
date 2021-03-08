@@ -10,26 +10,28 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
 
 ## Contents 
 ---
-- [UX](#ux)
+- [Down It!](#down-it-)
+  * [Contents](#contents)
+  * [UX](#ux)
     + [Project Goals & Objectives](#project-goals---objectives)
     + [User Goals](#user-goals)
     + [Stakeholder Goals](#stakeholder-goals)
     + [User Requirements and Expectations](#user-requirements-and-expectations)
     + [Design choices](#design-choices)
-    + [Technologies Used](#technologies-used)
-    + [Features](#features)
-    + [Testing](#testing)
+  * [Technologies Used](#technologies-used)
+  * [Features](#features)
+  * [Testing](#testing)
     + [User Goals](#user-goals-1)
     + [Bugs](#bugs)
-    + [Deployment](#deployment)
-      - [GitHub Pages](#github-pages)
-      - [Forking the GitHub repository](#forking-the-github-repository)
-    + [Credits](#credits)
-    + [Acknowledgements](#acknowledgements)
+  * [Deployment](#deployment)
+    + [GitHub Pages](#github-pages)
+    + [Forking the GitHub repository](#forking-the-github-repository)
+  * [Credits](#credits)
+  * [Acknowledgements](#acknowledgements)
 
 <small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
-# UX #
+## UX
 ---
 ### Project Goals & Objectives 
 ---
@@ -76,7 +78,7 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
 * Fonts
   * 
 
-### Technologies Used
+## Technologies Used
 ---
   * Languages;
     *  [HTML5](https://en.wikipedia.org/wiki/HTML5)
@@ -94,7 +96,7 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
     *  [Google Dev Tools](https://developers.google.com/web/tools/chrome-devtools) has been invaluable for solving issues and bugs and testing responsiveness. 
 
 
-### Features
+## Features
 ---
 * Included in current deployment;
   * Function to add the user name 
@@ -102,7 +104,7 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
   * Leaderboard displaying score ranking based on username
 
 
-### Testing 
+## Testing 
 ---
 *  Development testing 
     *
@@ -126,9 +128,9 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
 ### Bugs
 ---
 
-### Deployment 
+## Deployment 
 ---
-#### GitHub Pages
+### GitHub Pages
 
 This project is deployed on GitHub Pages using the following method;
 1) Log in to GitHub Pages and click on 'repositories'
@@ -138,13 +140,13 @@ This project is deployed on GitHub Pages using the following method;
 5) Under source, there are three buttons select the branch button (at time of writing the first button of the three) and choose 'Master'. 
 6) Once the page has refreshed (it can take a while) when you scroll back down you will see a green bar with a tick showing that your site is published. 
 
-#### Forking the GitHub repository
+### Forking the GitHub repository
 
 To make a copy of the repository, which may be necessary if you wish to make changes without affecting the original using this method;
 1) Ensure you are logged in to GitHub
 2) The Fork button is on the top right of the page, above settings and below your github icon.  Click on it to make a copy of the original. 
   
-### Credits
+## Credits
 ---
 
 Source for background photo;
@@ -157,7 +159,7 @@ Source for interesting facts about Ireland and St Patricks day;
 * https://www.irelandbeforeyoudie.com/50-shocking-facts-about-ireland-you-probably-didnt-know/
 
 
-### Acknowledgements
+## Acknowledgements
 --- 
 
 
