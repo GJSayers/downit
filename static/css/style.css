@@ -137,6 +137,14 @@ main {
 .add-pint img {
   width: 100%;
 }
+#player_name {
+  position: absolute;
+  top: 2vh;
+  right: 5vh;
+  padding: 5px 10px;
+  background-color: #009a49;
+  border-radius: 20px;
+}
 #pint {
   height: 100%;/*25vh;*/
   margin-top: 10px;
