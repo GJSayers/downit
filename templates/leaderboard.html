@@ -50,7 +50,11 @@
       </thead>
       <tbody>
       {% for entry in scores %}
+        {%- if player and player.id == entry._id -%}
+        <tr class="highlight">
+        {%- else -%}
         <tr>
+        {%- endif -%}
           <td>{{ loop.index }}</td>
           <td>{{ entry.player }}</td>
           <td>{{ entry.score }}</td>
