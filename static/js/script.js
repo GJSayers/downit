@@ -22,6 +22,8 @@ function startTimer(duration, display) {
     for (let i = 0; i < display.length; i++){
       display[i].textContent = seconds;
     }
+    // sends a timestamp to the server so we can tell if someone cheats
+//    $( "#time_stamp" ).val(seconds);
     if (--timer < 0) {
       for(let i = 0; i < display.length; i++) {
         redirect();
@@ -32,16 +34,16 @@ function startTimer(duration, display) {
 }
 
 // Clears the player name field on click
-$( "#quiz-player-form .player-name" ).click(function() {
+$( "#quiz_player_form .player-name" ).click(function() {
   $( this ).val('');
 });
 
 // Triggered when answer is submitted
-$( "#quiz-form input[name='answer']" ).change(function(event) {
+$( "#quiz_form input[name='answer']" ).change(function(event) {
   //Player has selected so disable the other options
-  $( "#quiz-form input[name='answer']:not(:checked)" ).prop('disabled', true);
+  $( "#quiz_form input[name='answer']:not(:checked)" ).prop('disabled', true);
   //Submit the answer to the server
-  submitFormAJAX($( "#quiz-form" )[0], checkAnswerCallback);
+  submitFormAJAX($( "#quiz_form" )[0], checkAnswerCallback);
 });
 
 // Shows the next quiz question
@@ -55,8 +57,8 @@ $( "#next_question_btn" ).click(function(event) {
   });
 
   //Reset radio radiobuttons
-  $( "#quiz-form input[name='answer']" ).prop('disabled', false);
-  $( "#quiz-form input[name='answer']" ).prop('checked', false);
+  $( "#quiz_form input[name='answer']" ).prop('disabled', false);
+  $( "#quiz_form input[name='answer']" ).prop('checked', false);
 
   //Reset button highlighting
   $( ".quiz-option" ).each(function(index) {
