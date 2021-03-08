@@ -7,6 +7,7 @@
 
   <section id="quiz_score_section">
     <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
+    <h1 class="timer">60</h1>
   </section>
   <section id="quiz_question_section">
     <form id="quiz-form" class="question-card" action="{{ url_for('AJAX_answer') }}" method="POST">
