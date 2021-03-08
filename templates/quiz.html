@@ -13,16 +13,17 @@
 <main>
   <section id="quiz_score_section">
     <form class="sound-toggle">
-      {#<input id="sound-on" type="radio" name="sound-toggle" checked />
-      <label for="sound-on"><i class="fas fa-volume-up"></i></label>
-      <input id="sound-off" type="radio" name="sound-toggle"/>
-      <label for="sound-off"><i class="fas fa-volume-mute"></i></label>#}
-
       <input type="checkbox" name="sound-toggle" id="sound-toggle" checked>
       <label for="sound-toggle" id="sound-on"><i class="fas fa-volume-up"></i></label>
       <label for="sound-toggle" id="sound-off"><i class="fas fa-volume-mute"></i></label>
     </form>
-    <div id="pint_counter"></div>
+    <div id="pint_counter">
+      {% for i in range((session.player_score/5)|int) %}
+      <div class="add-pint">
+        <img src="/static/images/pint-counter-icon.svg">
+      </div>
+      {% endfor %}
+    </div>
     {#<div id="player_name">{{ session.player }}</div>#}
     <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
     <h1 class="timer">{{ time_left|int }}</h1>
