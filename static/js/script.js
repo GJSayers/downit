@@ -30,6 +30,10 @@ function startTimer(duration, display) {
   }, 1000);
 }
 
+$( "#sound_toggle" ).change(function() {
+  console.log("sound toggled");
+});
+
 // Clears the player name field on click
 $("#quiz_player_form .player-name").click(function() {
   $(this).val('');
@@ -103,9 +107,11 @@ function checkAnswerCallback(response) {
       `);
     }
     //play drink sfx
-    if $("#sound-on").prop("checked") {
-      ("#drink_sound")[0].play();
-    } else {
+    if ($( "#sound-toggle" ).prop("checked")) {
+      $("#drink_sound")[0].play();
+    }
+  } else {
+    if ($( "#sound-toggle" ).prop("checked")) {
       $("#feck_sound")[0].play();
     }
   }
