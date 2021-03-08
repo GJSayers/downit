@@ -3,9 +3,9 @@
 
 A quiz-based game where you can score in pints of Guinness designed as a way for family and friends to have fun and connect online to celebrate St. Patricks Day. 
 
-View the live project [here]()
+View the live project [here](https://down-it.herokuapp.com/)
 
-View the repository in GitHub [here]()
+View the repository in GitHub [here](https://github.com/GJSayers/downit)
 
 
 ## Contents 
@@ -161,10 +161,19 @@ To make a copy of the repository, which may be necessary if you wish to make cha
 ### Credits
 ---
 
+Source for background photo;
 
-### Acknowledgements
---- 
+* Nikola Jovanovic
+@danteov_seen  on https://unsplash.com
 
 Source for interesting facts about Ireland and St Patricks day;
 
 * https://www.irelandbeforeyoudie.com/50-shocking-facts-about-ireland-you-probably-didnt-know/
+
+
+### Acknowledgements
+--- 
+
+
+
+
