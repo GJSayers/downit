@@ -153,18 +153,6 @@ def gameover():
     return render_template("leaderboard.html", scores=scores, player=player)
 
 
-#@app.route("/leaderboard")
-#def leaderboard():
-#    """ Leaderboard route """
-#    #Gets the top scores sorted by date added
-#    scores = mongo.db.scores.find().sort([
-#        ("score", -1),
-#        ("_id", 1)
-#    ]).limit(10)
-#
-#    return render_template("leaderboard.html", scores=scores)
-
-
 @app.route("/AJAX_answer", methods=["POST"])
 def AJAX_answer():
     """ Accepts an answer as an ajax request and returns if it is correct. """
