@@ -28,9 +28,17 @@
       </a>
     </div>
   </div>
-  <div>
-    <a class="restart-button btn" href="{{ url_for('home') }}">Get another round in!</a>
-  </div>
+  {% if player %}
+    {{ player }}
+    <form id="quiz-player-form" action="{{ url_for('quiz') }}" method="POST">
+      <input type="hidden" name="player_name" value="{{ player.name }}">
+      <input class="restart-button btn" type="submit" value="Get another round in!">
+    </form>
+  {% else %}
+    <div>
+      <a class="restart-button btn" href="{{ url_for('home') }}">Have a go!</a>
+    </div>
+  {% endif %}
   <div class="leaderboard">
     <table class="leaderboard-table">
       <thead>
@@ -41,7 +49,7 @@
         </tr>
       </thead>
       <tbody>
-      {% for entry in leaderboard %}
+      {% for entry in scores %}
         <tr>
           <td>{{ loop.index }}</td>
           <td>{{ entry.player }}</td>
