@@ -67,12 +67,13 @@ def get_question():
 
     #If we run out of questions, end the quiz
     if question == []:
-        return redirect(url_for("finished"))
+        return redirect(url_for("gameover"))
 
     #Add the new question to the list
     add_question_to_list(question[0]["_id"])
 
     return question
+
 
 def get_score():
     """ Returns the player's current score """
@@ -118,33 +119,50 @@ def quiz():
     return render_template("quiz.html", question = question[0])
 
 
-@app.route("/finished")
-def finished():
+@app.route("/gameover")
+@app.route("/leaderboard")
+def gameover():
     """ Called when the game ends. """
+    player = {}
 
-    if 'player' in session:
+    if 'player' in session and session['player']:
         #Store the player's score
-        mongo.db.scores.insert_one({
+        id = mongo.db.scores.insert_one({
             "player" : session["player"],
             "score" : session["player_score"]
         })
+        #Where did the player place in the database?
+        position = mongo.db.scores.find({
+            "score" : {"$gte":session["player_score"]}
+        }).count()
+        player = {
+            "name" : session['player'],
+            "score" : session['player_score'],
+            "place" : position,
+            "id" : id.inserted_id
+        }
 
-    #clear session
-    clear_game_state()
-
-    return redirect(url_for("leaderboard"))
-
-
-@app.route("/leaderboard")
-def leaderboard():
-    """ Leaderboard route """
-    #Gets the top scores sorted by date added
-    leaderboard = mongo.db.scores.find().sort([
+    scores = mongo.db.scores.find().sort([
         ("score", -1),
         ("_id", 1)
     ]).limit(10)
 
-    return render_template("leaderboard.html", leaderboard=leaderboard)
+    #clear session
+    clear_game_state()
+
+    return render_template("leaderboard.html", scores=scores, player=player)
+
+
+#@app.route("/leaderboard")
+#def leaderboard():
+#    """ Leaderboard route """
+#    #Gets the top scores sorted by date added
+#    scores = mongo.db.scores.find().sort([
+#        ("score", -1),
+#        ("_id", 1)
+#    ]).limit(10)
+#
+#    return render_template("leaderboard.html", scores=scores)
 
 
 @app.route("/AJAX_answer", methods=["POST"])

@@ -5,11 +5,11 @@ var startTime = 1.00;
 $( document ).ready(function () {
   let setMinutes = 60 * startTime,
   display = document.querySelectorAll(".timer");
-  startTimer(setMinutes, display, redirect);
+  startTimer(setMinutes, display);
 });
 
 function redirect() {
-  location.replace("/leaderboard");
+  location.replace($( "#gameover" ).val());
 }
 
 function startTimer(duration, display) {
@@ -23,7 +23,7 @@ function startTimer(duration, display) {
       display[i].textContent = seconds;
     }
     if (--timer < 0) {
-      for(let i=0; i < display.length; i++) {
+      for(let i = 0; i < display.length; i++) {
         redirect();
       }
       clearInterval(intervalLoop);
