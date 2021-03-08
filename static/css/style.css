@@ -132,6 +132,7 @@ main {
   top: 0;
   left: 5vw;
   width: 3vw;
+  min-width: 35px;
 }
 .add-pint {}
 .add-pint img {
@@ -221,7 +222,7 @@ main {
 #player_name {
   position: absolute;
   top: 2vh;
-  right: 5vh;
+  right: 5vw;
   padding: 5px 10px;
   background-color: #009a49;
   border-radius: 20px;
@@ -232,7 +233,7 @@ main {
   overflow: hidden;
   position: absolute;
   top: 2vh;
-  right: 5vh;
+  right: 5vw;
 }
 
 .sound-toggle input {
@@ -346,8 +347,13 @@ main {
 /*
  * Media Queries
  */
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
   footer {
     display: none;
+  }
+  .sound-toggle label {
+    font-size: 15px;
+    text-align: center;
+    padding: 4px 8px;
   }
 }

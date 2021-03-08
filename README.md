@@ -98,6 +98,7 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
     *  [HTML5](https://en.wikipedia.org/wiki/HTML5)
     *  [CSS3](https://en.wikipedia.org/wiki/CSS)
     *  [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+    *  [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
 
   * Libraries, Frameworks & Resources;
     *  [jQuery](https://jquery.com/) 
@@ -105,6 +106,7 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
     *  [GitHub Pages](https://pages.github.com/) was used to deploy the site
     *  [GitPod](https://gitpod.io) was used for development and version control
     *  [Figma](https://figma.com) was used to create wireframes and create colour scheme
+    *  [FontAwesome](https://fontawesome.com/) for the sound toggle icons
     *  [Google Dev Tools](https://developers.google.com/web/tools/chrome-devtools) has been invaluable for solving issues and bugs and testing responsiveness. 
 
 
@@ -161,10 +163,19 @@ To make a copy of the repository, which may be necessary if you wish to make cha
 ### Credits
 ---
 
+Source for background photo;
 
-### Acknowledgements
---- 
+* Nikola Jovanovic
+@danteov_seen  on https://unsplash.com
 
 Source for interesting facts about Ireland and St Patricks day;
 
 * https://www.irelandbeforeyoudie.com/50-shocking-facts-about-ireland-you-probably-didnt-know/
+
+
+### Acknowledgements
+--- 
+
+
+
+
