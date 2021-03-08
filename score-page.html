@@ -19,7 +19,11 @@
         <p>Take a look where you are on the leaderboard on the way out of my pub... and don't forget to share the fun!</p>
         <div class="social-share">
           <a href="instagram.com" target="_blank"><i class="fab fa-instagram-square"></i></a>
-          <a href="https://twitter.com/?lang=en"><i class="fab fa-twitter-square" target="_blank"></i></a>
+          <a class="twitter-share-button" href="https://twitter.com/intent/tweet"
+            data-text="I just downed pints of guinness on" 
+            data-url="http://down-it.herokuapp.com/home"
+            data-hashtags="downit,pattothefuture,stpatricksday" >
+        </a>
 
       </div>
     </div>
@@ -35,6 +39,23 @@
 <footer>
     <p>Created for Code Institute March 2021 Hackathon by 'Pat to the future'</p>
   </footer>
+
+  <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));</script>
    
     
 </body>
