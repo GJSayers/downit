@@ -12,13 +12,22 @@
 
 <main>
   <div class="welcome-text">
+    {% if player %}
     <p>
-      Looks like you've had enough (name). You downed over 3 pints.
+      Looks like you've had enough {{ player.name }}. You downed over
+      {{ (player.score / 5)|int }} pints. That puts you in {{ player.place }}
+      overall.
     </p>
     <p>
       Take a look where you are on the leaderboard on the way out of my pub...
       and don't forget to share the fun!
     </p>
+    {% else %}
+    <p>
+      Take a look at the leaderboard to see our top scorers. When you're done,
+      why not give it a try yourself?
+    </p>
+    {% endif %}
     <div class="social-share">
       <a href="https://instagram.com" target="_blank">
         <i class="fab fa-instagram-square"></i>
@@ -29,7 +38,6 @@
     </div>
   </div>
   {% if player %}
-    {{ player }}
     <form id="quiz-player-form" action="{{ url_for('startgame') }}" method="POST">
       <input type="hidden" name="player_name" value="{{ player.name }}">
       <input class="restart-button btn" type="submit" value="Get another round in!">
