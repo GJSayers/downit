@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-<main>
-  {# Gives client side code access to the current player score #}
-  <input type="hidden" value="{{ session.player_score }}" id="player_score">
 
+{# Gives client side code access to the current player score #}
+<input type="hidden" value="{{ session.player_score }}" id="player_score">
+{# Give client side code access to the gameover page url #}
+<input type="hidden" value="{{ url_for('gameover') }}" id="gameover">
+
+<main>
   <section id="quiz_score_section">
     <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
     <h1 class="timer">60</h1>
