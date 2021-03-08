@@ -39,7 +39,22 @@ main {
 }
 
 .hide {
-  display: none;
+  display: none !important;
+}
+.btn {
+  /* centers text vertically */
+  display: flex;          /* We need flex for align-items to work */
+  align-items: center;
+  justify-content: center;
+
+  width: 75vw;
+  min-height: 50px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 10px auto;
+  border-radius: 5px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 15px;
+  letter-spacing: 0.13em;
 }
 /*
  * Home page styles
@@ -88,7 +103,7 @@ main {
   display: block;
   width: 275px;
   height: 50px;
-  background: #f9f9f9;
+  background-color: #f9f9f9;
   box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
   margin: 20px auto;
   border-radius: 5px;
@@ -99,16 +114,10 @@ main {
 }
 
 #quiz-player-form input[type = 'submit'] {
-  display: block;
   width: 275px;
   height: 50px;
-  background: #FF7900;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 15px auto;
-  border-radius: 5px;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 22px;
-  letter-spacing: 0.13em;
+
+  background-color: #FF7900;
 }
 
 /*
@@ -158,21 +167,7 @@ main {
 }
 /* Default styling for quiz options */
 .quiz-option div {
-  /* centers text vertically */
-  display: flex;          /* We need flex for align-items to work */
-  align-items: center;
-  justify-content: center;
-
-  width: 75vw;
-  min-height: 50px;
-  background: #FF7900;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin: 10px auto;
-  border-radius: 5px;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 15px;
-  letter-spacing: 0.13em;
-  background-color: orange;
+  background-color: #FF7900;
 }
 /* Hides the radio buttons while allowing them to still function */
 .quiz-option > input[type="radio"] {
@@ -194,14 +189,68 @@ main {
 .quiz-option.wrong > input[type="radio"]:checked + div {
   background-color: red;
 }
+#next_question_btn {
+  color: #f8f8f8;
+  background-color: #009a49
+}
 /*
  * Leaderboard page
  */
-.leaderboard ul,
-.leaderboard li {
-  list-style: none;
-  padding: 0;
-  background-color: rgba(0, 154, 73, 0.25);
+.leaderboard-title {
+  color: #f8f8f8;
+  font-family: 'Ribeye', cursive;
+  font-size: 52px;
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin: 1vh 0;
+}
+.restart-button {
+  text-decoration: none;
+  color: #f8f8f8;
+  background-color: #FF7900;
+}
+.leaderboard {
+  box-sizing: border-box;
+  /*background: #C4C4C4;*/
+  /*position: sticky;*/
+  font-family: 'Roboto Mono', monospace;
+  width: 347px;
+  /*height: 155px;*/
+  border: 15px solid #FF7900;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
+  width: 80vw;
+  padding: 8px;
+  margin: 15px auto 50px auto;
+  max-width: 700px;
+/*  max-height: 70vh;*/
+  /* Makes it look a bit like a black board */
+  color: white;
+  background-color: black;
+  font-family: 'East Sea Dokdo', cursive;
+  font-size: 25px;
+}
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.leaderboard-table thead {
+  border-bottom: 2px solid white;
+}
+.social-share {
+  text-align: center;
+  font-size: xx-large;
+  color: #FF7900;
+}
+.social-share a {
+  text-decoration: none;
+}
+.fa-instagram-square {
+  color: #FF7900;
+}
+.fa-twitter-square {
+  color:  #FF7900;
+}
+.fab:hover {
+  color:white;
 }
 
 /*
