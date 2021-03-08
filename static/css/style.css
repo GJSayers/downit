@@ -316,6 +316,9 @@ main {
   font-family: 'East Sea Dokdo', cursive;
   font-size: 25px;
 }
+.leaderboard h4 {
+  margin: 5px;
+}
 .leaderboard-table {
   width: 100%;
   border-collapse: collapse;
