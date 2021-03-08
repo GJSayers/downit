@@ -83,8 +83,8 @@ main {
     linear-gradient(#009a49 30%, rgba(0, 154, 73, 0)),
     linear-gradient(rgba(0, 154, 73, 0), #009a49 70%) 0 100%,
     /* Shadows*/
-    radial-gradient(50% 0, farthest-side, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)),
-    radial-gradient(50% 100%, farthest-side, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)) 0 100%;
+    radial-gradient(farthest-side at 50% 0, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)),
+    radial-gradient(farthest-side at 50% 100%, rgba(0, 0, 0, .75), rgba(0, 0, 0, 0)) 0 100%;
   background:
     /* Shadow covers */
     linear-gradient(#009a49 30%, rgba(0, 154, 73, 0)),
@@ -99,7 +99,7 @@ main {
   background-attachment: local, local, scroll, scroll;
 }
 
-#quiz-player-form .player-name {
+#quiz_player_form .player-name {
   display: block;
   width: 275px;
   height: 50px;
@@ -113,7 +113,7 @@ main {
   letter-spacing: 0.4em;
 }
 
-#quiz-player-form input[type = 'submit'] {
+#quiz_player_form input[type = 'submit'] {
   width: 275px;
   height: 50px;
 
@@ -124,6 +124,7 @@ main {
  * Quiz
  */
 #quiz_score_section {
+  position: relative;
   height: 25vh;
 }
 #pint {
@@ -151,6 +152,17 @@ main {
 }
 .pint5 {
   background-image: url("../images/pint5.png");
+}
+.timer {
+  position: absolute;
+  bottom: 0;
+  right: 5vw;
+  color: black;
+
+  padding: 15px;
+
+  background-color: white;
+  border-radius: 50%;
 }
 .quiz-question {
   margin-left: 5vw;
@@ -191,7 +203,7 @@ main {
 }
 #next_question_btn {
   color: #f8f8f8;
-  background-color: #009a49
+  background-color: #009a49;
 }
 /*
  * Leaderboard page
@@ -234,6 +246,9 @@ main {
 }
 .leaderboard-table thead {
   border-bottom: 2px solid white;
+}
+.leaderboard-table .highlight {
+  background-color: #009a49;
 }
 .social-share {
   text-align: center;

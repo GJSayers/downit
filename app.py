@@ -1,4 +1,5 @@
 import os
+import time
 from functools import wraps
 from flask import ( Flask, flash, render_template, redirect,
                     request, session, url_for, abort)
@@ -67,12 +68,13 @@ def get_question():
 
     #If we run out of questions, end the quiz
     if question == []:
-        return redirect(url_for("finished"))
+        return redirect(url_for("gameover"))
 
     #Add the new question to the list
     add_question_to_list(question[0]["_id"])
 
     return question
+
 
 def get_score():
     """ Returns the player's current score """
@@ -94,6 +96,7 @@ def clear_game_state():
     """ Clears persistent game state variables """
     session["player"] = ""
     session["player_score"] = 0
+    session["game_start"] = 0
     session["questions"] = []
 
 
@@ -105,51 +108,75 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/quiz", methods=["POST"])
-def quiz():
-    """ Quiz page route. """
-    #If this is the start of the game, add player name to session
+@app.route("/startgame", methods=["POST"])
+def startgame():
+    clear_game_state()
+
     if 'player_name' in request.form:
         session['player'] = request.form['player_name']
         session['player_score'] = 0
+        session["game_start"] = time.time()
+    else:
+        return abort(400)
+
+    return redirect(url_for("quiz"))
+
+
+@app.route("/quiz")
+def quiz():
+    """ Quiz page route. """
+    time_left = 60 - (time.time() - session["game_start"])
+    if time_left <= 0:
+        redirect(url_for("gameover"))
 
     question = get_question()
 
-    return render_template("quiz.html", question = question[0])
+    return render_template("quiz.html", question = question[0], time_left=time_left)
 
 
-@app.route("/finished")
-def finished():
-    """ Called when the game ends. """
-
-    if 'player' in session:
-        #Store the player's score
-        mongo.db.scores.insert_one({
-            "player" : session["player"],
-            "score" : session["player_score"]
-        })
-
-    #clear session
-    clear_game_state()
-
-    return redirect(url_for("leaderboard"))
-
-
+@app.route("/gameover")
 @app.route("/leaderboard")
-def leaderboard():
-    """ Leaderboard route """
-    #Gets the top scores sorted by date added
-    leaderboard = mongo.db.scores.find().sort([
+def gameover():
+    """ Called when the game ends. """
+    player = {}
+
+    if 'player' in session and session['player']:
+        if session['player_score'] > 0:
+            #Store the player's score
+            id = mongo.db.scores.insert_one({
+                "player" : session["player"],
+                "score" : session["player_score"]
+            })
+            #Where did the player place in the database?
+            position = mongo.db.scores.find({
+                "score" : {"$gte":session["player_score"]}
+                }).count()
+            player = {
+                "name" : session['player'],
+                "score" : session['player_score'],
+                "place" : position,
+                "id" : id.inserted_id
+            }
+
+    scores = mongo.db.scores.find().sort([
         ("score", -1),
         ("_id", 1)
     ]).limit(10)
 
-    return render_template("leaderboard.html", leaderboard=leaderboard)
+    #clear session
+    clear_game_state()
+
+    return render_template("leaderboard.html", scores=scores, player=player)
 
 
 @app.route("/AJAX_answer", methods=["POST"])
 def AJAX_answer():
     """ Accepts an answer as an ajax request and returns if it is correct. """
+    #Check that the game time hasn't elapsed
+    time_left = 60 - (time.time() - session["game_start"])
+    if time_left <= 0:
+        redirect(url_for("gameover"))
+
     response = {
         "correct_answer" : -1,
         "player_correct" : False,

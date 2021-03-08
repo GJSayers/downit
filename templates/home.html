@@ -22,8 +22,8 @@
     </p>
   </div>
 
-  <form id="quiz-player-form" action="{{ url_for('quiz') }}" method="POST">
-    <input class="player-name" type="text" name="player_name" value="Your name">
+  <form id="quiz_player_form" action="{{ url_for('startgame') }}" method="POST">
+    <input class="player-name" type="text" name="player_name" value="Your name" required>
     <input class="btn" type="submit" value="Mine's a pint!!">
   </form>
 
