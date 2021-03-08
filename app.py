@@ -100,6 +100,12 @@ def clear_game_state():
     session["questions"] = []
 
 
+def game_time():
+    """ Returns the length of a game in seconds """
+    #Game length in seconds
+    return 60;
+
+
 @app.route("/")
 @app.route("/home")
 def home():
@@ -125,7 +131,7 @@ def startgame():
 @app.route("/quiz")
 def quiz():
     """ Quiz page route. """
-    time_left = 60 - (time.time() - session["game_start"])
+    time_left = game_time() - (time.time() - session["game_start"])
     if time_left <= 0:
         redirect(url_for("gameover"))
 
@@ -150,7 +156,7 @@ def gameover():
             #Where did the player place in the database?
             position = mongo.db.scores.find({
                 "score" : {"$gte":session["player_score"]}
-                }).count()
+            }).count()
             player = {
                 "name" : session['player'],
                 "score" : session['player_score'],
@@ -173,7 +179,7 @@ def gameover():
 def AJAX_answer():
     """ Accepts an answer as an ajax request and returns if it is correct. """
     #Check that the game time hasn't elapsed
-    time_left = 60 - (time.time() - session["game_start"])
+    time_left = game_time() - (time.time() - session["game_start"])
     if time_left <= 0:
         redirect(url_for("gameover"))
 
