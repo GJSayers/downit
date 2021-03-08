@@ -10,40 +10,24 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
 
 ## Contents 
 ---
-* UX
-  * Project Goals & Objectives 
-  * User Goals
-  * Stakeholder Goals
-  * User Requirements and Expectations 
-  * Design choices
-    * Layout & Wireframes
-    * Colours
-    * Icons
-    * Fonts
+- [UX](#ux)
+    + [Project Goals & Objectives](#project-goals---objectives)
+    + [User Goals](#user-goals)
+    + [Stakeholder Goals](#stakeholder-goals)
+    + [User Requirements and Expectations](#user-requirements-and-expectations)
+    + [Design choices](#design-choices)
+    + [Technologies Used](#technologies-used)
+    + [Features](#features)
+    + [Testing](#testing)
+    + [User Goals](#user-goals-1)
+    + [Bugs](#bugs)
+    + [Deployment](#deployment)
+      - [GitHub Pages](#github-pages)
+      - [Forking the GitHub repository](#forking-the-github-repository)
+    + [Credits](#credits)
+    + [Acknowledgements](#acknowledgements)
 
-* Technologies 
-  * Languages
-  * Libraries
-
-* Features
-  * Included in current deployment
-  * Future implementations
-
-* Testing 
-  *  Development testing 
-  *  Design edits
-  *  Pre-Deployment validation testing
-  *  Peer-code review & mentor feedback 
-  *  Post-Deployment Results
-
-* Bugs
-  *  Development Bug & Fixes
-  *  Pre-Deployment Bugs & Fixes
-
-* Deployment 
-  * Method
-  
-* Credits
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
 
 # UX #
 ---
