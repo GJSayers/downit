@@ -22,8 +22,6 @@ function startTimer(duration, display) {
     for (let i = 0; i < display.length; i++){
       display[i].textContent = seconds;
     }
-    // sends a timestamp to the server so we can tell if someone cheats
-//    $( "#time_stamp" ).val(seconds);
     if (--timer < 0) {
       for(let i = 0; i < display.length; i++) {
         redirect();
