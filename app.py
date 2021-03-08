@@ -151,7 +151,8 @@ def gameover():
             #Store the player's score
             id = mongo.db.scores.insert_one({
                 "player" : session["player"],
-                "score" : session["player_score"]
+                "score" : session["player_score"],
+                "time" : game_time()
             })
             #Where did the player place in the database?
             position = mongo.db.scores.count_documents({
