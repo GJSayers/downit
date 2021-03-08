@@ -137,14 +137,6 @@ main {
 .add-pint img {
   width: 100%;
 }
-#player_name {
-  position: absolute;
-  top: 2vh;
-  right: 5vh;
-  padding: 5px 10px;
-  background-color: #009a49;
-  border-radius: 20px;
-}
 #pint {
   height: 100%;/*25vh;*/
   margin-top: 10px;
@@ -222,6 +214,68 @@ main {
 #next_question_btn {
   color: #f8f8f8;
   background-color: #009a49;
+}
+/*
+ * Sound toggle
+ */
+#player_name {
+  position: absolute;
+  top: 2vh;
+  right: 5vh;
+  padding: 5px 10px;
+  background-color: #009a49;
+  border-radius: 20px;
+}
+.sound-toggle {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: absolute;
+  top: 2vh;
+  right: 5vh;
+}
+
+.sound-toggle input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  height: 1px;
+  width: 1px;
+  border: 0;
+  overflow: hidden;
+}
+
+.sound-toggle label {
+  background-color: #666666;
+  color: #AAAAAA;
+  font-size: 20px;
+  line-height: 1;
+  text-align: center;
+  padding: 8px 16px;
+  margin-right: -1px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 0.4s ease-in-out;
+}
+
+.sound-toggle label:hover {
+  cursor: pointer;
+}
+
+.sound-toggle input:checked ~ label#sound-on {
+  color: #f8f8f8;
+  background-color: #FF7900;
+}
+.sound-toggle input:not(:checked) ~ label#sound-off {
+  color: #f8f8f8;
+  background-color: #FF7900;
+}
+
+.sound-toggle label:first-of-type {
+  border-radius: 4px 0 0 4px;
+}
+
+.sound-toggle label:last-of-type {
+  border-radius: 0 4px 4px 0;
 }
 /*
  * Leaderboard page
