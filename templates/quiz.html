@@ -6,11 +6,13 @@
 <input type="hidden" value="{{ session.player_score }}" id="player_score">
 {# Give client side code access to the gameover page url #}
 <input type="hidden" value="{{ url_for('gameover') }}" id="gameover">
+{# Sets timer from server timestamp so player can't cheat by refreshing the page #}
+<input type="hidden" value="{{ time_left }}" id="startTime">
 
 <main>
   <section id="quiz_score_section">
     <div id="pint" class="pint{{ session.player_score % 5 }}"></div>
-    <h1 class="timer">60</h1>
+    <h1 class="timer">{{ time_left|int }}</h1>
   </section>
   <section id="quiz_question_section">
     <form id="quiz_form" class="question-card" action="{{ url_for('AJAX_answer') }}" method="POST">

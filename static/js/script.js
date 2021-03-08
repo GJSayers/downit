@@ -1,11 +1,11 @@
 var question;
-// countdown in Minutes
-var startTime = 1.00;
 
 $( document ).ready(function () {
-  let setMinutes = 60 * startTime,
-  display = document.querySelectorAll(".timer");
-  startTimer(setMinutes, display);
+  if ($( "#startTime" )) {
+    let setMinutes = parseInt($( "#startTime" ).val());
+    display = document.querySelectorAll(".timer");
+    startTimer(setMinutes, display);
+  }
 });
 
 function redirect() {
@@ -15,9 +15,7 @@ function redirect() {
 function startTimer(duration, display) {
   let timer = duration, minutes, seconds;
   let intervalLoop = setInterval(function () {
-    minutes = parseInt(timer / 60, 10)
-    seconds = parseInt(timer % 60, 10);
-    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = timer;
     seconds = seconds < 10 ? "0" + seconds : seconds;
     for (let i = 0; i < display.length; i++){
       display[i].textContent = seconds;

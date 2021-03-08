@@ -124,9 +124,13 @@ def startgame():
 @app.route("/quiz")
 def quiz():
     """ Quiz page route. """
+    time_left = 60 - (time.time() - session["game_start"])
+    if time_left <= 0:
+        redirect(url_for("gameover"))
+
     question = get_question()
 
-    return render_template("quiz.html", question = question[0])
+    return render_template("quiz.html", question = question[0], time_left=time_left)
 
 
 @app.route("/gameover")
@@ -136,21 +140,22 @@ def gameover():
     player = {}
 
     if 'player' in session and session['player']:
-        #Store the player's score
-        id = mongo.db.scores.insert_one({
-            "player" : session["player"],
-            "score" : session["player_score"]
-        })
-        #Where did the player place in the database?
-        position = mongo.db.scores.find({
-            "score" : {"$gte":session["player_score"]}
-        }).count()
-        player = {
-            "name" : session['player'],
-            "score" : session['player_score'],
-            "place" : position,
-            "id" : id.inserted_id
-        }
+        if session['player_score'] > 0:
+            #Store the player's score
+            id = mongo.db.scores.insert_one({
+                "player" : session["player"],
+                "score" : session["player_score"]
+            })
+            #Where did the player place in the database?
+            position = mongo.db.scores.find({
+                "score" : {"$gte":session["player_score"]}
+                }).count()
+            player = {
+                "name" : session['player'],
+                "score" : session['player_score'],
+                "place" : position,
+                "id" : id.inserted_id
+            }
 
     scores = mongo.db.scores.find().sort([
         ("score", -1),
@@ -167,7 +172,8 @@ def gameover():
 def AJAX_answer():
     """ Accepts an answer as an ajax request and returns if it is correct. """
     #Check that the game time hasn't elapsed
-    if time.time() - session["time_stamp"] > 60:
+    time_left = 60 - (time.time() - session["game_start"])
+    if time_left <= 0:
         redirect(url_for("gameover"))
 
     response = {
