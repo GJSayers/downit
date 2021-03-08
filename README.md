@@ -41,7 +41,6 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
   3) **provide trivia** based on facts about Ireland 
   4) enable people to **celebrate St Patrick's Day** in a fun way from a distance
  
-
 ### User Goals 
 ---
 1) As a **Potential player of the game**, I want to;
@@ -49,14 +48,11 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
    2) Access and **play the game** in a simple manner with feedback for my answers along the way. 
    3) Compete with and compare to my friends by tracking scores through a **leaderboard**, on-page scoring or similar. 
   
-  
 ### Stakeholder Goals 
 ---
 * To encourage as many users as possible to;
   1) **Play & enjoy** the game
   2) **Share** the results on social media. 
-
-
 
 ### User Requirements and Expectations 
 ---
@@ -68,17 +64,19 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
 ---
 * Layout & Wireframes
   *Wireframe created on Figma
+  
   ![Wireframe](documentation/figma.jpg)
   
 * Colours
   * A pallet based on colours associated with both Ireland and Guinness to give a St. Patrick’s Day vibe to the players! (key colours:  Green, orange, white, black) 
   
 * Icons 
-  * Primary Icons should be based around the main theme of Guiness 
+  * Primary Icons should be based around the main theme of Guiness
+ 
 * Imagery  
   * 
 * Fonts
-  * 
+  * Roboto Mono, Ribeye and PT Sans
 
 ## Technologies Used
 ---
@@ -104,7 +102,8 @@ View the repository in GitHub [here](https://github.com/GJSayers/downit)
   * Function to add the user name 
   * Quiz presented as multiple choice buttons
   * Leaderboard displaying score ranking based on username
-
+  * Feedback on the quiz - if user selects correct answer their selection turns green, if incorrect then selection turns red and the correct answer shows as green
+  * Sound effects when user selects answer correctly/incorrectly
 
 ## Testing 
 ---
